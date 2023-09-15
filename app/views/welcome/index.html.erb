@@ -1,5 +1,65 @@
-<h2>SubGraph Visualization</h2>
-<p>
-  The time is now: <%= Time.now %>
-</p>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubGraph Visualization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            width: 100%;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 20px;
+        }
+        .left-column {
+            flex: 1;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        .right-column {
+            flex: 2;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SubGraph Visualization</h1>
+    </header>
+    <div class="container">
+        <div class="left-column">
+            <h2>Input Boxes</h2>
+            <label for="include">Include:</label>
+            <input type="text" id="include" name="include" placeholder="Include...">
+            <br><br>
+            <label for="exclude">Exclude:</label>
+            <input type="text" id="exclude" name="exclude" placeholder="Exclude...">
+            <br><br>
+            <label for="budget">Budget:</label>
+            <input type="text" id="budget" name="budget" placeholder="Budget...">
+        </div>
+        <div class="right-column">
+            <h2>Graph Visualization</h2>
+            
+            <img src="assets/images/A-graph-with-nodes-and-edges.png" alt="Graph Visualization">
+        </div>
+    </div>
+</body>
+</html>
