@@ -7,12 +7,13 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
+            background-color: #f4f4f8;
+            margin: 40px;
         }
         header {
             background-color: #333;
@@ -37,6 +38,77 @@
             padding: 20px;
             box-sizing: border-box;
         }
+
+        form {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        .dynamic-field {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dynamic-section {
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin-right: 10px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #3498db;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #2ecc71;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #27ae60;
+        }
     </style>
 </head>
 <body>
@@ -45,20 +117,68 @@
     </header>
     <div class="container">
         <div class="left-column">
-            <h2>Input Boxes</h2>
-            <label for="include">Include:</label>
-            <input type="text" id="include" name="include" placeholder="Include...">
-            <br><br>
-            <label for="exclude">Exclude:</label>
-            <input type="text" id="exclude" name="exclude" placeholder="Exclude...">
-            <br><br>
-            <label for="budget">Budget:</label>
-            <input type="text" id="budget" name="budget" placeholder="Budget...">
+            <form id="mainForm">
+                <!-- Include Section -->
+                <div class="dynamic-section">
+                    <h2>Include</h2>
+                    <div id="includeFields" class="dynamic-fields">
+                        <div class="dynamic-field">
+                            <input type="text" name="include[]" placeholder="Include Text" required>
+                        </div>
+                    </div>
+                    <button type="button" onclick="addField('includeFields')">Add More</button>
+                    <button type="button" onclick="removeField('includeFields')">Remove</button>
+                </div>
+
+                <!-- Exclude Section -->
+                <div class="dynamic-section">
+                    <h2>Exclude</h2>
+                    <div id="excludeFields" class="dynamic-fields">
+                        <div class="dynamic-field">
+                            <input type="text" name="exclude[]" placeholder="Exclude Text">
+                        </div>
+                    </div>
+                    <button type="button" onclick="addField('excludeFields')">Add More</button>
+                    <button type="button" onclick="removeField('excludeFields')">Remove</button>
+                </div>
+
+                <!-- Budget Section -->
+                <div>
+                    <h2>Budget</h2>
+                    <input type="number" name="budget" placeholder="Enter Budget">
+                </div>
+
+                <br>
+                <input type="submit" value="Submit">
+            </form>
         </div>
         <div class="right-column">
             <h2>Graph Visualization</h2>            
             <img src="<%= image_path('A-graph-with-nodes-and-edges.png') %>" alt="Graph Visualization">
         </div>
     </div>
+    <script>
+        function addField(containerId) {
+            const container = document.getElementById(containerId);
+            const field = document.createElement("div");
+            field.classList.add("dynamic-field");
+
+            if(containerId === 'includeFields') {
+                field.innerHTML = '<input type="text" name="include[]" placeholder="Include Text" required>';
+            } else {
+                field.innerHTML = '<input type="text" name="exclude[]" placeholder="Exclude Text">';
+            }
+
+            container.appendChild(field);
+        }
+
+        function removeField(containerId) {
+            const container = document.getElementById(containerId);
+            const allFields = container.querySelectorAll('.dynamic-field');
+            if (allFields.length > 1) {
+                allFields[allFields.length - 1].remove();
+            }
+        }
+    </script>
 </body>
 </html>
