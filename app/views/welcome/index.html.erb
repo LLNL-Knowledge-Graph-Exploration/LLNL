@@ -109,6 +109,9 @@
         input[type="submit"]:hover {
             background-color: #27ae60;
         }
+        #cy {
+            height: calc(100vh - 215px)
+        }
     </style>
 </head>
 <body>
@@ -154,7 +157,7 @@
         </div>
         <div class="right-column">
             <h2>Graph Visualization</h2>            
-            <img src="<%= image_path('A-graph-with-nodes-and-edges.png') %>" alt="Graph Visualization">
+            <div style="text-align: left"id="cy"></div>          
         </div>
     </div>
     <script>
@@ -180,5 +183,38 @@
             }
         }
     </script>
+    <script type="module">
+    import cytoscape from "cytoscape";
+    
+    
+    fetch('/data.json') 
+        .then(response => response.json())
+        .then(data => {
+            var cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: data,
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'background-color': '#666',
+                            'label': 'data(id)'
+                        }
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 3,
+                            'line-color': '#ccc',
+                            'target-arrow-color': '#ccc',
+                            'target-arrow-shape': 'none',
+                            'curve-style': 'bezier'
+                        }
+                    },
+                ],
+                
+            });
+        });
+</script>
 </body>
 </html>
