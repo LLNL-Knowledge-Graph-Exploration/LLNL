@@ -43,6 +43,17 @@ RSpec.describe Inclusion, type: :model do
     subject.vid = "A" * 256
     expect(subject).to_not be_valid
   end
+
+  it "is valid with showing all edges" do
+    subject.vid = "Austin"
+    expect(subject).to eq("ae", "ab")
+  end
+
+  it "is not valid because it is not showing all edges" do
+    subject.vid = "Austin"
+    expect(subject).to_not eq("lb")
+  end
+
 end
 
 
