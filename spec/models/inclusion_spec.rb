@@ -49,11 +49,10 @@ RSpec.describe Inclusion, type: :model do
     expect(subject).to eq("ae", "ab")
   end
 
-  it "is not valid because it is not showing all edges" do
+  it "is not valid because it is not showing correct edges" do
     subject.vid = "Austin"
     expect(subject).to_not eq("lb")
   end
-
 end
 
 
