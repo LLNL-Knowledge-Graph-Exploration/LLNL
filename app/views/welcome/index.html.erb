@@ -24,7 +24,7 @@
         .container {
             display: flex;
             justify-content: space-between;
-            width: 80%;
+            width: 100%;
             margin-top: 20px;
         }
         .left-column {
@@ -33,8 +33,14 @@
             border-right: 1px solid #ddd;
             box-sizing: border-box;
         }
+        .center-column {
+            flex: 3;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            box-sizing: border-box;
+        }
         .right-column {
-            flex: 2;
+            flex: 1;
             padding: 20px;
             box-sizing: border-box;
         }
@@ -46,6 +52,7 @@
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
+            height: 80%;
         }
 
         h2 {
@@ -112,6 +119,13 @@
         #cy {
             height: calc(100vh - 215px)
         }
+        table {
+            width: 100%;
+            text-align: center;
+        }
+        td {
+            width: 50%;
+        }
     </style>
 </head>
 <body>
@@ -155,9 +169,19 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
-        <div class="right-column">
+        <div class="center-column">
             <h2>Graph Visualization</h2>            
             <div style="text-align: left"id="cy"></div>          
+        </div>
+        <div class="right-column">
+          <form id="metaDataForm">
+            <h2>Meta Data</h2>
+            <h4 id="nodeId"></h4>
+            <table id="metaDataTable"></table>
+            <br>
+            <button id="metaDataInclude" type="button" onclick="addField('includeFields')" hidden>Include</button>
+            <button id="metaDataExclude" type="button" onclick="removeField('excludeFields')" hidden>Exclude</button>
+          </form>
         </div>
     </div>
     <script>
@@ -214,6 +238,29 @@
                 ],
                 
             });
+            cy.on('click', 'node', function(evt){
+                console.log( 'clicked ' + this.id() );
+                document.getElementById("nodeId").textContent = this.data("id");
+                document.getElementById("metaDataInclude").removeAttribute('hidden');
+                document.getElementById("metaDataExclude").removeAttribute('hidden');
+                var table = document.getElementById("metaDataTable");
+                while (table.firstChild) {
+                    table.removeChild(table.firstChild);
+                }
+                var data = this.data();
+                // Loop through the data
+                for (const key in data) {
+                    if (data.hasOwnProperty(key) && key!="id") {
+                        const newRow = table.insertRow(table.rows.length);
+
+                        const cell1 = newRow.insertCell(0);
+                        const cell2 = newRow.insertCell(1);
+
+                        cell1.innerHTML = key;
+                        cell2.innerHTML = data[key];
+                    }
+                }
+            })
         });
 </script>
 </body>
