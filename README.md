@@ -21,8 +21,8 @@ Ruby Version: `3.2.2`
 
     - Via Rails
 
-    `rails server`
+        - `rails server`
 
     - Via Heroku CLI (Heroku must be installed)
 
-    `heroku local`
+        - `heroku local`
