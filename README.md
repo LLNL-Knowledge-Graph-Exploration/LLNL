@@ -26,3 +26,9 @@ Ruby Version: `3.2.2`
     - Via Heroku CLI (Heroku must be installed)
 
         - `heroku local`
+
+    Troubleshooting:
+
+    If encountering a migration problem, use the following code:
+
+    `rails db:migrate` or `rails db:migrate RAILS_ENV=development`
