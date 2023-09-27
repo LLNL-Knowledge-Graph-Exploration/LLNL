@@ -13,6 +13,15 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'simplecov'
+SimpleCov.start 'rails' do
+  # Any custom configurations like groups can go here
+  # add_filter '/channels/'
+  # add_filter '/controllers/'
+  # add_filter '/mailers/'
+  # add_filter '/jobs/'
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
