@@ -55,6 +55,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails', '~> 6.0.0'
   gem 'cucumber-rails', require: false
+  gem 'simplecov', require: false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
 end
