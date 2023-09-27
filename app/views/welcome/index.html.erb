@@ -134,7 +134,8 @@
     </header>
     <div class="container">
         <div class="left-column">
-            <form id="mainForm">
+            <form id="mainForm", method="post">
+                <%= csrf_meta_tags %>
                 <!-- Include Section -->
                 <div class="dynamic-section">
                     <h2>Include</h2>
@@ -262,6 +263,32 @@
                 }
             })
         });
-</script>
+    </script>
+
+    <script>
+    document.getElementById('mainForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const formData = new FormData(event.target); // Get form data
+
+    try {
+        const response = await fetch('/process_data', {
+        method: 'POST',
+        body: formData,
+        });
+
+        if (response.ok) {
+        // Handle success, maybe update the UI
+        // Reload the graph or display a success message
+        // You may also fetch and reload the updated data.json here
+        } else {
+        // Handle errors, show an error message, etc.
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+    });
+
+    </script>
 </body>
 </html>
