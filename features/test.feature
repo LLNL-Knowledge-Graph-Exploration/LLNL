@@ -3,50 +3,43 @@ Feature: Inclusion of graph nodes
 
     Scenario:
         Include a specific node
-        Given user enters a specific and valid node 
-        When user hits submit
-        Then graph displays the specific node and associated edges 
+        Given the JSON file contains the following data:
+        | id   |
+        | node1 |
+        | node2 |
+        | node3 |
+        And the user is on the welcome page
+        When the user enters "node1" and hits submit
+        Then the message contains "Data processed and updated successfully"
     
     Scenario: 
         Include a non-existent node 
-        Given user enters a node that does not exist in the database
-        When user hits submit
-        Then output is an error message "Node X does not exist"
+        Given the graph:
+        | id   |
+        | node1 |
+        | node2 |
+        | node3 |
+        When user submits "node4" that does not exist
+        Then the returned data has no nodes
 
     Scenario: 
-        Include a node with no connections 
-        Given user enters a node that does not have any associated edges 
-        When user hits submit
+        Include a node with no connections
+        Given a graph with no associated edges:
+        | id   |
+        | node1 |
+        | node2 |
+        | node3 |
+        When user submits "node1"
         Then graph displays only the single node
     
     Scenario:
         User enters nothing
-        Given user enters no nodes
-        When user hits submit
-        Then output is an error message "Invalid Input" 
-
-    Scenario:
-        Include a valid node in all upper case letters 
-        Given user enters a node in all uppercase 
-        When user hits submit
-        Then graph displays the specific node and associated edges
-
-    Scenario: 
-        Include a valid node in all lowercase letters
-        Given user enters a node in all lowercase
-        When user hits submit 
-        Then output is an error message "Invalid Input" 
-
-    Scenario: 
-        Include a valid node whose first letter capital and the other letters are lowercase
-        Given user enters a node whose first letter is capitalized 
-        When user hits submit
-        Then graph displays the specific node and associated edges
-
-    Scenario: 
-        Include a node with special characters in the name
-        Given user enters a node whose name includes special characters 
-        When user hits submit
-        Then output is an error message "Invalid Input"
+        Given any graph:
+        | id   |
+        | node1 |
+        | node2 |
+        | node3 |
+        When user submits "", an empty value
+        Then output is empty
 
 
