@@ -25,67 +25,8 @@
           1,
           null
         ]
-      },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/channels/application_cable/channel.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/channels/application_cable/connection.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/controllers/application_controller.rb": {
-        "lines": [
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/controllers/welcome_controller.rb": {
-        "lines": [
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/jobs/application_job.rb": {
-        "lines": [
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/mailers/application_mailer.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
       }
     },
-    "timestamp": 1695832622
+    "timestamp": 1696002066
   }
 }
