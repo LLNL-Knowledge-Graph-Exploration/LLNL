@@ -1,0 +1,32 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/helpers/welcome_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/models/inclusion.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      }
+    },
+    "timestamp": 1696002066
+  }
+}

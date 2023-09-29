@@ -12,7 +12,6 @@ gem "sprockets-rails"
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4" , group: :development
 
-gem 'pg', '~> 1.5.4'
 gem 'rails_12factor'
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -56,6 +55,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails', '~> 6.0.0'
   gem 'cucumber-rails', require: false
+  gem 'simplecov', require: false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
 end
@@ -77,3 +77,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+group :production do
+  gem "pg"
+end
+
