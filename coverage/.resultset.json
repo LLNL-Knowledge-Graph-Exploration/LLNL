@@ -1,32 +1,52 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/helpers/application_helper.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/helpers/application_helper.rb": {
         "lines": [
-          1,
-          null
-        ]
+          0,
+          0
+        ],
+        "branches": {
+        }
       },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/helpers/welcome_helper.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/helpers/welcome_helper.rb": {
         "lines": [
-          1,
-          null
-        ]
+          0,
+          0
+        ],
+        "branches": {
+        }
       },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/models/inclusion.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/application_record.rb": {
         "lines": [
-          1,
-          null
-        ]
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
       },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/models/application_record.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/inclusion.rb": {
         "lines": [
-          1,
-          1,
-          null
-        ]
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/user.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1696002066
+    "timestamp": 1696443384
   }
 }

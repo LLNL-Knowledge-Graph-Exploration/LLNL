@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
 
+    before_action :authenticate_user!
+
     # app/controllers/your_controller.rb
     def fetch_data
       # Get the path to the JSON file within the public directory
