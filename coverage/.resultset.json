@@ -1,32 +1,84 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/helpers/application_helper.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/user.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/helpers/welcome_helper.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/helpers/welcome_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/models/inclusion.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/inclusion.rb": {
         "lines": [
-          1,
-          null
-        ]
-      },
-      "/Users/nicholassoliman/Documents/GitHub/LLNL/app/models/application_record.rb": {
-        "lines": [
-          1,
           1,
           null
         ]
       }
     },
-    "timestamp": 1696002066
+    "timestamp": 1697139490
+  },
+  "Cucumber Features": {
+    "coverage": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/user.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/helpers/welcome_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/inclusion.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {
+        }
+      }
+    },
+    "timestamp": 1697139502
   }
 }
