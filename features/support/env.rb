@@ -5,7 +5,13 @@
 # files.
 
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  # Any custom configurations like groups can go here
+  add_filter '/channels/'
+  add_filter '/controllers/'
+  add_filter '/mailers/'
+  add_filter '/jobs/'
+end
 require 'cucumber/rails'
 
 # frozen_string_literal: true
