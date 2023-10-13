@@ -9,15 +9,18 @@ Ruby Version: `3.2.2`
 
 # Project Setup
 
-1. Navigate to project directory
+1. Clone this repository.
+   `git clone git@github.com:LLNL-Knowledge-Graph-Exploration/LLNL.git`
+
+2. Navigate to project directory
 
     `cd LLNL`
 
-2. Install Gem Packages
+3. Install Gem Packages
 
     `bundle install`
 
-3. Run locally
+4. Run locally
 
     - Via Rails
 
