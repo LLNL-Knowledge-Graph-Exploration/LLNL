@@ -2,44 +2,60 @@
   "nodes": [
     {
       "data": {
-        "id": "a",
-        "foo": 3,
-        "bar": 5,
-        "baz": 7
-      }
-    },
-    {
-      "data": {
-        "id": "e",
-        "foo": 2,
-        "bar": 4,
-        "baz": 5
-      }
-    },
-    {
-      "data": {
-        "id": "b",
-        "foo": 7,
         "bar": 1,
-        "baz": 3
+        "baz": 3,
+        "foo": 7,
+        "id": "b"
+      }
+    },
+    {
+      "data": {
+        "bar": 5,
+        "baz": 7,
+        "foo": 3,
+        "id": "a"
+      }
+    },
+    {
+      "data": {
+        "bar": 4,
+        "baz": 5,
+        "foo": 2,
+        "id": "e"
+      }
+    },
+    {
+      "data": {
+        "bar": 7,
+        "baz": 6,
+        "foo": 2,
+        "id": "c"
       }
     }
   ],
   "edges": [
     {
       "data": {
-        "id": "ae",
-        "weight": 1,
+        "id": "ab",
         "source": "a",
-        "target": "e"
+        "target": "b",
+        "weight": 3
       }
     },
     {
       "data": {
-        "id": "ab",
-        "weight": 3,
-        "source": "a",
-        "target": "b"
+        "id": "be",
+        "source": "b",
+        "target": "e",
+        "weight": 4
+      }
+    },
+    {
+      "data": {
+        "id": "bc",
+        "source": "b",
+        "target": "c",
+        "weight": 5
       }
     }
   ]

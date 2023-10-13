@@ -3,25 +3,11 @@ class WelcomeController < ApplicationController
     before_action :authenticate_user!
 
     # app/controllers/your_controller.rb
+    # g++ public/test.cpp -o public/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
     def fetch_data
-      # Get the path to the JSON file within the public directory
-      json_file_path = Rails.root.join('public', 'data.json')
-  
-      # Check if the file exists
-      if File.exist?(json_file_path)
-        # Read the JSON data from the file
-        json_data = File.read(json_file_path)
-  
-        # Parse the JSON data
-        parsed_data = JSON.parse(json_data)
-  
-        # Now you can work with the parsed data as a Ruby hash
-        # For example, you can render it as JSON in your response
-        render json: parsed_data
-      else
-        # Handle the case where the JSON file doesn't exist
-        render json: { error: 'JSON file not found' }, status: :not_found
-      end
+        system("g++ public/test.cpp -o public/test_program2 -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11")
+        json_data = `public/test_program2`
+        return json_data
     end
 
     def process_data
@@ -34,7 +20,10 @@ class WelcomeController < ApplicationController
 
         # Fetch and parse the current data.json
         json_file_path = Rails.root.join('public', 'data.json')
-        json_data = File.exist?(json_file_path) ? JSON.parse(File.read(json_file_path)) : {}
+        # json_data = File.exist?(json_file_path) ? JSON.parse(File.read(json_file_path)) : {}
+        
+        json_data = fetch_data
+        json_data = JSON.parse(json_data)
     
         # Process and update the JSON data as needed
         included_edges = json_data['edges'].select do |edge|
