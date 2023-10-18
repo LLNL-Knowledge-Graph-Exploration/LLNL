@@ -7,7 +7,7 @@
 //     return 0;
 // }
 
-// g++ public/test.cpp -o public/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
+// g++ cpp_code/test.cpp -o cpp_code/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
 
 
 #include <iostream>
