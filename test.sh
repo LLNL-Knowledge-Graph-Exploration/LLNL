@@ -9,6 +9,7 @@ export BOOST_ROOT=$PWD/boost_1_78_0
 git clone https://github.com/LLNL/metall
 export METALL_INCLUDE=$PWD/metall/include
 
+apt-get install g++
 g++ -std=c++17 your_program.cpp -lstdc++fs -I${BOOST_ROOT} -I${METALL_INCLUDE}
 
 pwd
