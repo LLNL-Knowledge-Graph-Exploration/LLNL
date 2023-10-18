@@ -1,4 +1,6 @@
 cmake
+cmake-data
+cmake-format
 libarchive13
 libcurl4
 libjsoncpp25
