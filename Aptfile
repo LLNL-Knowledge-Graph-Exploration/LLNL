@@ -2,6 +2,6 @@ cmake
 libarchive13
 libcurl4
 libjsoncpp-dev
-libssl
+libssl-dev
 libuv1
 zlib1g
