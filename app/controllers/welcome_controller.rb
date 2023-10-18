@@ -20,22 +20,29 @@ class WelcomeController < ApplicationController
 
         # Fetch and parse the current data.json
         json_file_path = Rails.root.join('public', 'data.json')
-        # json_data = File.exist?(json_file_path) ? JSON.parse(File.read(json_file_path)) : {}
+        json_data = File.exist?(json_file_path) ? JSON.parse(File.read(json_file_path)) : {}
         
-        json_data = fetch_data
-        json_data = JSON.parse(json_data)
+        #json_data = fetch_data
+        #json_data = JSON.parse(json_data)
     
-        # Process and update the JSON data as needed
+        # Get edges of included nodes
         included_edges = json_data['edges'].select do |edge|
             include_data.include?(edge['data']['source']) || include_data.include?(edge['data']['target'])
         end
 
+        # Remove excluded nodes from include_data
+        included_edges.delete_if { 
+            |edge| exclude_data.include?(edge['data']['source']) || exclude_data.include?(edge['data']['target'])
+        }
+
+        # Make nodes list for final included data
         nodes = []
 
         json_data['nodes'].each do |node|
             nodes << node if include_data.include?(node['data']['id'])
         end
-
+        
+        # Make edges list for final included edges
         included_edges.each do |edge|
             if include_data.include?(edge['data']['source'])
                 nodes << json_data['nodes'].find { |node| node['data']['id'] == edge['data']['target'] }
