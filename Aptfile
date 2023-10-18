@@ -7,3 +7,4 @@ libuv1
 zlib1g
 librhash0
 build-essential
+g++-11
