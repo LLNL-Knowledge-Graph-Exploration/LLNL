@@ -1,2 +1,7 @@
-libarchive13
 cmake
+libarchive13
+libcurl4
+libjsoncpp1
+libssl1.1
+libuv1
+zlib1g
