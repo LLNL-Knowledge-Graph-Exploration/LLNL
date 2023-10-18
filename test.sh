@@ -16,3 +16,6 @@ g++ -std=c++17 your_program.cpp -lstdc++fs -I${BOOST_ROOT} -I${METALL_INCLUDE}
 
 pwd
 touch howdy
+
+# https://github.com/heroku/heroku-buildpack-apt
+# https://github.com/Starkast/heroku-buildpack-cmake
