@@ -6,4 +6,4 @@ libssl-dev
 libuv1
 zlib1g
 librhash0
-g++
+build-essential
