@@ -10,4 +10,4 @@ zlib1g
 librhash0
 build-essential
 g++-11
-nlohmann-json
+nlohmann-json3-dev
