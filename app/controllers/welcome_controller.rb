@@ -19,8 +19,10 @@ class WelcomeController < ApplicationController
         puts "Hello I am Processing Data"
 
         # Fetch and parse the current data.json
-        json_file_path = Rails.root.join('public', 'data.json')
-        json_data = File.exist?(json_file_path) ? JSON.parse(File.read(json_file_path)) : {}
+        json_file_path_in = Rails.root.join('db', 'data.json')
+        json_file_path_out = Rails.root.join('public', 'data.json')
+
+        json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
         
         #json_data = fetch_data
         #json_data = JSON.parse(json_data)
@@ -31,9 +33,9 @@ class WelcomeController < ApplicationController
         end
 
         # Remove excluded nodes from include_data
-        included_edges.delete_if { 
-            |edge| exclude_data.include?(edge['data']['source']) || exclude_data.include?(edge['data']['target'])
-        }
+        #included_edges.delete_if { 
+        #    |edge| exclude_data.include?(edge['data']['source']) || exclude_data.include?(edge['data']['target'])
+        #}
 
         # Make nodes list for final included data
         nodes = []
@@ -45,9 +47,17 @@ class WelcomeController < ApplicationController
         # Make edges list for final included edges
         included_edges.each do |edge|
             if include_data.include?(edge['data']['source'])
-                nodes << json_data['nodes'].find { |node| node['data']['id'] == edge['data']['target'] }
+                node = json_data['nodes'].find { |node| node['data']['id'] == edge['data']['target'] }
+                if !nodes.include?(node)
+                    nodes << node
+                end
+                # nodes << json_data['nodes'].find { |node| node['data']['id'] == edge['data']['target'] }
             elsif include_data.include?(edge['data']['target'])
-                nodes << json_data['nodes'].find { |node| node['data']['id'] == edge['data']['source'] }
+                node = json_data['nodes'].find { |node| node['data']['id'] == edge['data']['source'] }
+                if !nodes.include?(node)
+                    nodes << node
+                end
+                #nodes << json_data['nodes'].find { |node| node['data']['id'] == edge['data']['source'] }
             end
         end
 
@@ -60,7 +70,7 @@ class WelcomeController < ApplicationController
 
 
         # Save the updated JSON data back to data.json
-        File.write(json_file_path, JSON.pretty_generate(included_data))
+        File.write(json_file_path_out, JSON.pretty_generate(included_data))
     
         render json: { message: 'Data processed and updated successfully' }
       end
