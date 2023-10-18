@@ -10,5 +10,6 @@ zlib1g
 librhash0
 build-essential
 g++-11
+gcc-11
 nlohmann-json3-dev
 libstdc++-11-dev
