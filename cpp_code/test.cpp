@@ -9,6 +9,7 @@ int main() {
 
 // g++-11 cpp_code/test.cpp -o cpp_code/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
 // g++-11 cpp_code/test.cpp -o cpp_code/test_program -I/app/.apt/usr/include/c++/11 -I/app/.apt/usr/include -I/usr/include/linux -I/usr/lib/gcc/x86_64-linux-gnu/11/include -std=c++11
+// g++-11 cpp_code/test.cpp -I/usr/lib/gcc/x86_64-linux-gnu/11/include -L/usr/lib/gcc/x86_64-linux-gnu/11 -o cpp_code/test_program 
 
 // #include <iostream>
 // #include <nlohmann/json.hpp>
