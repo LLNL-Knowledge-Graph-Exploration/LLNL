@@ -90,62 +90,61 @@
     </script>
     <script type="module">
     import cytoscape from "cytoscape";
-    
-    
-    fetch('/data.json') 
-        .then(response => response.json())
-        .then(data => {
-            var cy = cytoscape({
-                container: document.getElementById('cy'),
-                elements: data,
-                style: [
-                    {
-                        selector: 'node',
-                        style: {
-                            'background-color': '#666',
-                            'label': 'data(id)'
-                        }
-                    },
-                    {
-                        selector: 'edge',
-                        style: {
-                            'width': 3,
-                            'line-color': '#ccc',
-                            'target-arrow-color': '#ccc',
-                            'target-arrow-shape': 'none',
-                            'curve-style': 'bezier'
-                        }
-                    },
-                ],
-                
-            });
-            cy.on('click', 'node', function(evt){
-                console.log( 'clicked ' + this.id() );
-                document.getElementById("nodeId").textContent = this.data("id");
-                document.getElementById("metaDataInclude").removeAttribute('hidden');
-                document.getElementById("metaDataExclude").removeAttribute('hidden');
-                var table = document.getElementById("metaDataTable");
-                while (table.firstChild) {
-                    table.removeChild(table.firstChild);
-                }
-                var data = this.data();
-                // Loop through the data
-                for (const key in data) {
-                    if (data.hasOwnProperty(key) && key!="id") {
-                        const newRow = table.insertRow(table.rows.length);
 
-                        const cell1 = newRow.insertCell(0);
-                        const cell2 = newRow.insertCell(1);
+    function fetchData() {
+        fetch('/data.json')
+          .then(response => response.json())
+          .then(data => {
+              var cy = cytoscape({
+                  container: document.getElementById('cy'),
+                  elements: data,
+                  style: [
+                      {
+                          selector: 'node',
+                          style: {
+                              'background-color': '#666',
+                              'label': 'data(id)'
+                          }
+                      },
+                      {
+                          selector: 'edge',
+                          style: {
+                              'width': 3,
+                              'line-color': '#ccc',
+                              'target-arrow-color': '#ccc',
+                              'target-arrow-shape': 'none',
+                              'curve-style': 'bezier'
+                          }
+                      },
+                  ],
 
-                        cell1.innerHTML = key;
-                        cell2.innerHTML = data[key];
-                    }
-                }
-            })
-        });
-    </script>
+              });
+              cy.on('click', 'node', function(evt){
+                  console.log( 'clicked ' + this.id() );
+                  document.getElementById("nodeId").textContent = this.data("id");
+                  document.getElementById("metaDataInclude").removeAttribute('hidden');
+                  document.getElementById("metaDataExclude").removeAttribute('hidden');
+                  var table = document.getElementById("metaDataTable");
+                  while (table.firstChild) {
+                      table.removeChild(table.firstChild);
+                  }
+                  var data = this.data();
+                  // Loop through the data
+                  for (const key in data) {
+                      if (data.hasOwnProperty(key) && key!="id") {
+                          const newRow = table.insertRow(table.rows.length);
 
-    <script>
+                          const cell1 = newRow.insertCell(0);
+                          const cell2 = newRow.insertCell(1);
+
+                          cell1.innerHTML = key;
+                          cell2.innerHTML = data[key];
+                      }
+                  }
+              })
+          });
+    }
+
     document.getElementById('mainForm').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
 
@@ -161,6 +160,7 @@
         // Handle success, maybe update the UI
         // Reload the graph or display a success message
         // You may also fetch and reload the updated data.json here
+        fetchData();
         } else {
         // Handle errors, show an error message, etc.
         }
