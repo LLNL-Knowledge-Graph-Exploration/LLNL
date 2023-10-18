@@ -11,4 +11,4 @@ librhash0
 build-essential
 g++-11
 nlohmann-json3-dev
-libstdc++-dev
+libstdc++-11-dev
