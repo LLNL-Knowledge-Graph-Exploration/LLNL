@@ -12,6 +12,7 @@
 // g++-11 cpp_code/test.cpp -I/usr/lib/gcc/x86_64-linux-gnu/11/include -L/usr/lib/gcc/x86_64-linux-gnu/11 -o cpp_code/test_program 
 
 // I had to do this before I compiled: export LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11:$LIBRARY_PATH
+// then I had to add the line set(CMAKE_CXX_COMPILER g++-11) to the CMakeLists.txt in the metall repo.
 
 
 #include <iostream>
