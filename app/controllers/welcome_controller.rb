@@ -29,6 +29,13 @@ class WelcomeController < ApplicationController
         json_file_path_in = Rails.root.join('db', 'data.json')
         json_file_path_out = Rails.root.join('public', 'data.json')
 
+        begin
+            json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
+        rescue JSON::ParserError => e
+            render json: { error: "Error reading data.json: #{e.message}" }, status: :internal_server_error
+            return
+        end
+
         json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
 
         # Get edges of included nodes
@@ -71,7 +78,12 @@ class WelcomeController < ApplicationController
         puts included_data
 
         # Save the updated JSON data back to data.json
-        File.write(json_file_path_out, JSON.pretty_generate(included_data))
+        begin
+            File.write(json_file_path_out, JSON.pretty_generate(included_data))
+        rescue Errno::EACCES, Errno::EIO, Errno::EPIPE => e
+            render json: { error: "Error writing data.json: #{e.message}" }, status: :internal_server_error
+            return
+        end
         render json: { message: 'Data processed and updated successfully' }
       end
 
