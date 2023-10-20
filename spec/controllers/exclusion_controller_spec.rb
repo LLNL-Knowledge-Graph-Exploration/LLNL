@@ -57,17 +57,6 @@ RSpec.describe WelcomeController, type: :controller do
 
     end
 
-    #it "handles missing data gracefully" do
-    # Stub fetch_data to return nil to simulate missing data
-    #allow(controller).to receive(:fetch_data).and_return(nil)
-
-    #post :process_data, params: valid_params
-
-    #expect(response).to have_http_status(:success)
-
-    # Verify that data.json was not updated
-    #expect(File.exist?(Rails.root.join('public', 'data.json'))).to be_falsey
-    #end
 
 
   end
