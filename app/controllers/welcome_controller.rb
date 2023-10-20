@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
-    before_action :authenticate_user!
+    before_action :authenticate_user! , except: [:process_data]
 
     # app/controllers/your_controller.rb
     # g++ public/test.cpp -o public/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
