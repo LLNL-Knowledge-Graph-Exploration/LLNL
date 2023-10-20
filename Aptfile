@@ -1,0 +1,16 @@
+cmake
+cmake-data
+cmake-format
+libarchive13
+libcurl4
+libjsoncpp25
+libssl-dev
+libuv1
+zlib1g
+librhash0
+build-essential
+g++-11
+gcc-11
+binutils
+nlohmann-json3-dev
+libstdc++-11-dev
