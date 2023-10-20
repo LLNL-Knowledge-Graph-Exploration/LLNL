@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/user.rb": {
+      "/Users/mvalizadeh/LLNL/app/models/user.rb": {
         "lines": [
           1,
           null,
@@ -11,33 +11,35 @@
           null
         ]
       },
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/application_record.rb": {
+      "/Users/mvalizadeh/LLNL/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/helpers/application_helper.rb": {
+      "/Users/mvalizadeh/LLNL/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/helpers/welcome_helper.rb": {
+      "/Users/mvalizadeh/LLNL/app/helpers/welcome_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/inclusion.rb": {
+      "/Users/mvalizadeh/LLNL/app/models/inclusion.rb": {
         "lines": [
-          1,
-          null
-        ]
+          0,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1697211515
+    "timestamp": 1697816576
   },
   "Cucumber Features": {
     "coverage": {
