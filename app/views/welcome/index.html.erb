@@ -162,7 +162,8 @@
         // You may also fetch and reload the updated data.json here
         fetchData();
         } else {
-        // Handle errors, show an error message, etc.
+            const errorResponse = await response.json();
+            console.error('Error:', errorResponse.error);
         }
     } catch (error) {
         console.error('Error:', error);
