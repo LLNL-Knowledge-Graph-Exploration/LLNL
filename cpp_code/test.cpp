@@ -9,7 +9,7 @@
 
 // g++-11 cpp_code/test.cpp -o cpp_code/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
 // g++-11 cpp_code/test.cpp -o cpp_code/test_program -I/app/.apt/usr/include/c++/11 -I/app/.apt/usr/include -I/usr/include/linux -I/usr/lib/gcc/x86_64-linux-gnu/11/include -std=c++11
-// g++-11 cpp_code/test.cpp -I/usr/lib/gcc/x86_64-linux-gnu/11/include -L/usr/lib/gcc/x86_64-linux-gnu/11 -o cpp_code/test_program 
+// g++-11 cpp_code/test.cpp -I/usr/lib/gcc/x86_64-linux-gnu/11/include -o cpp_code/test_program 
 
 // I had to do this before I compiled: export LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11:$LIBRARY_PATH
 // then I had to add the line set(CMAKE_CXX_COMPILER g++-11) to the CMakeLists.txt in the metall repo.
