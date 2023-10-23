@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/mvalizadeh/LLNL/app/models/user.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/user.rb": {
         "lines": [
           1,
           null,
@@ -11,35 +11,89 @@
           null
         ]
       },
-      "/Users/mvalizadeh/LLNL/app/models/application_record.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/Users/mvalizadeh/LLNL/app/helpers/application_helper.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/mvalizadeh/LLNL/app/helpers/welcome_helper.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/helpers/welcome_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/mvalizadeh/LLNL/app/models/inclusion.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/inclusion.rb": {
         "lines": [
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null,
+          1,
+          2,
+          8,
+          null,
+          2,
+          null,
+          null
+        ]
+      },
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/exclusion.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          5,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/assembler.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          2,
+          null,
+          2,
+          10,
+          null,
+          null,
+          null,
+          2,
+          4,
+          15,
+          3,
+          2,
+          null,
+          1,
+          4,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          2,
+          null,
+          null,
+          null,
+          2,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1697816576
+    "timestamp": 1698090718
   },
   "Cucumber Features": {
     "coverage": {
