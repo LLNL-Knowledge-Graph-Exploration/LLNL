@@ -38,48 +38,18 @@ class WelcomeController < ApplicationController
 
         json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
 
-        # Get edges of included nodes
-        included_edges = json_data['edges'].select do |edge|
-            include_data.include?(edge['data']['source']) || include_data.include?(edge['data']['target'])
-        end
+        # Calls to the inclusion, exclusion models
+        inclusion = Inclusion.new
+        exclusion = Exclusion.new
+        assembler = Assembler.new
 
-        # Remove excluded nodes from include_data
-        included_edges.delete_if { 
-           |edge| exclude_data.include?(edge['data']['source']) || exclude_data.include?(edge['data']['target'])
-        }
-
-        # Make nodes list for final included data
-        nodes = []
-
-        json_data['nodes'].each do |node|
-            nodes << node if include_data.include?(node['data']['id'])
-        end
-        
-        # Make edges list for final included edges
-        included_edges.each do |edge|
-            if include_data.include?(edge['data']['source'])
-                node = json_data['nodes'].find { |node| node['data']['id'] == edge['data']['target'] }
-                if !nodes.include?(node)
-                    nodes << node
-                end
-            elsif include_data.include?(edge['data']['target'])
-                node = json_data['nodes'].find { |node| node['data']['id'] == edge['data']['source'] }
-                if !nodes.include?(node)
-                    nodes << node
-                end
-            end
-        end
-
-        included_data = {
-            'nodes' => nodes,
-            'edges' => included_edges
-        }
-
-        puts included_data
+        included_edges = inclusion.includeNodes(include_data, json_data)
+        included_edges = exclusion.excludeNodes(included_edges, exclude_data)
+        final_data = assembler.assemble(include_data, included_edges, json_data)
 
         # Save the updated JSON data back to data.json
         begin
-            File.write(json_file_path_out, JSON.pretty_generate(included_data))
+            File.write(json_file_path_out, JSON.pretty_generate(final_data))
         rescue Errno::EACCES, Errno::EIO, Errno::EPIPE => e
             render json: { error: "Error writing data.json: #{e.message}" }, status: :internal_server_error
             return
