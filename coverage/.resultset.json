@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/mvalizadeh/LLNL/app/models/user.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/user.rb": {
         "lines": [
           1,
           null,
@@ -11,20 +11,20 @@
           null
         ]
       },
-      "/Users/mvalizadeh/LLNL/app/models/application_record.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/Users/mvalizadeh/LLNL/app/helpers/application_helper.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/mvalizadeh/LLNL/app/helpers/welcome_helper.rb": {
+      "/home/renbrent/github/LLNL_TEAM/LLNL/app/helpers/welcome_helper.rb": {
         "lines": [
           1,
           null
@@ -95,11 +95,13 @@
           3,
           null,
           6,
+
           null,
           null
         ]
       }
     },
+
     "timestamp": 1698250604
   },
   "Cucumber Features": {

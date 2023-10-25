@@ -14,3 +14,4 @@ gcc-11
 binutils
 nlohmann-json3-dev
 libstdc++-11-dev
+mpich
