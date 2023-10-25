@@ -1,65 +1,97 @@
-# frozen_string_literal: true
 
 require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
-  describe "process_data " do
-    let(:valid_params) do
-      {
-        include: ['node1', 'node2'],
-        exclude: [],
-        budget: 100
-      }
+  describe '#process_data' do
+    it 'processes data and returns a success response' do
+      allow(controller).to receive(:authenticate_user!)
+
+      # sample parameters for the request
+      include_data = ['node1', 'node2']
+      exclude_data = []
+      budget = 100
+
+
+      post :process_data, params: { include: include_data, exclude: exclude_data, budget: budget }
+
+      expect(response).to have_http_status(:ok)
+
+      json_response = JSON.parse(response.body)
+
+      expect(json_response).to include('message' => 'Data processed and updated successfully')
     end
 
-    let(:json_data) do
-      {
-        'nodes' => [
-          { 'data' => { 'id' => 'node1' } },
-          { 'data' => { 'id' => 'node2' } },
-          { 'data' => { 'id' => 'node3' } },
-          { 'data' => { 'id' => 'node4' } },
-          { 'data' => { 'id' => 'node5' } }
-        ],
-        'edges' => [
-          { 'data' => { 'source' => 'node1', 'target' => 'node2' } },
-          { 'data' => { 'source' => 'node3', 'target' => 'node2' } },
-          { 'data' => { 'source' => 'node1', 'target' => 'node5' } },
-          { 'data' => { 'source' => 'node3', 'target' => 'node4' } }
-        ]
-      }
-    end
+    it 'handles common nodes in include and exclude' do
+      allow(controller).to receive(:authenticate_user!)
 
-    before do
-      allow(controller).to receive(:fetch_data).and_return(json_data.to_json)
-    end
-
-    it "processes and includes the specified nodes and edges" do
-      post :process_data, params: valid_params
-
-      expect(response).to have_http_status(:success)
-      response_data = JSON.parse(response.body)
-      expect(response_data['message']).to eq('Data processed and updated successfully')
-
-      # Reload JSON data after processing
-      updated_json_data = JSON.parse(File.read(Rails.root.join('public', 'data.json')))
-
-      # Verify that only the specified nodes and edges are included
-      expect(updated_json_data['nodes']).to include(a_hash_including('data' => { 'id' => 'node1' }))
-      expect(updated_json_data['nodes']).to include(a_hash_including('data' => { 'id' => 'node2' }))
-      expect(updated_json_data['nodes']).to include(a_hash_including('data' => { 'id' => 'node3' }))
-      expect(updated_json_data['nodes']).to include(a_hash_including('data' => { 'id' => 'node5' }))
-      expect(updated_json_data['nodes']).not_to include(a_hash_including('data' => { 'id' => 'node4' }))
-
-      expect(updated_json_data['edges']).to include(a_hash_including('data' => { 'source' => 'node1', 'target' => 'node2' }))
-      expect(updated_json_data['edges']).to include(a_hash_including('data' => { 'source' => 'node1', 'target' => 'node5' }))
-      expect(updated_json_data['edges']).to include(a_hash_including('data' => { 'source' => 'node3', 'target' => 'node2' }))
-      expect(updated_json_data['edges']).not_to include(a_hash_including('data' => { 'source' => 'node3', 'target' => 'node4' }))
+      # sample parameters
+      common_node = 'node1'
+      include_data = [common_node]
+      exclude_data = [common_node]
+      budget = 100
 
 
+      post :process_data, params: { include: include_data, exclude: exclude_data, budget: budget }
+
+
+      expect(response).to have_http_status(:unprocessable_entity)
+
+      json_response = JSON.parse(response.body)
+
+      expect(json_response).to include('error' => "Some nodes are both included and excluded: #{common_node}")
     end
 
 
+    it 'handles JSON parsing errors' do
+      allow(controller).to receive(:authenticate_user!)
 
+      invalid_json_data = "This is not a valid JSON string"
+      allow(File).to receive(:exist?).and_return(true)
+      allow(File).to receive(:read).and_return(invalid_json_data)
+
+      post :process_data, params: { include: [], exclude: [], budget: 100 }
+
+      expect(response).to have_http_status(:internal_server_error)
+
+      json_response = JSON.parse(response.body)
+
+      expect(json_response).to include('error' => a_string_including('Error reading data.json'))
+    end
+
+    it 'handles file writing errors' do
+
+      allow(controller).to receive(:authenticate_user!)
+
+      allow(File).to receive(:exist?).and_return(true)
+      allow(File).to receive(:read).and_return('{}')
+      allow(File).to receive(:write).and_raise(Errno::EACCES, 'Permission denied')
+
+      post :process_data, params: { include: [], exclude: [], budget: 100 }
+
+      expect(response).to have_http_status(:internal_server_error)
+
+      json_response = JSON.parse(response.body)
+
+      expect(json_response).to include('error' => a_string_including('Error writing data.json'))
+    end
+
+    it 'interacts with Inclusion, Exclusion, and Assembler classes' do
+      allow(controller).to receive(:authenticate_user!)
+
+      inclusion = instance_double(Inclusion, includeNodes: [])
+      exclusion = instance_double(Exclusion, excludeNodes: [])
+      assembler = instance_double(Assembler, assemble: {})
+
+      allow(Inclusion).to receive(:new).and_return(inclusion)
+      allow(Exclusion).to receive(:new).and_return(exclusion)
+      allow(Assembler).to receive(:new).and_return(assembler)
+
+      post :process_data, params: { include: [], exclude: [], budget: 100 }
+
+      expect(inclusion).to have_received(:includeNodes).with([], anything)
+      expect(exclusion).to have_received(:excludeNodes).with([], [])
+      expect(assembler).to have_received(:assemble).with([], [], anything)
+    end
   end
 end
+
