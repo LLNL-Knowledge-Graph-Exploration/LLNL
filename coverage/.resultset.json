@@ -30,74 +30,83 @@
           null
         ]
       },
-      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/inclusion.rb": {
+      "/Users/mvalizadeh/LLNL/app/models/assembler.rb": {
         "lines": [
           1,
           null,
           1,
-          2,
-          8,
           null,
-          2,
+          5,
+          4,
+          4,
+          19,
           null,
-          null
-        ]
-      },
-      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/exclusion.rb": {
-        "lines": [
-          1,
+          null,
           null,
           1,
+          null,
+          null,
+          5,
+          6,
+          15,
+          4,
+          1,
+          null,
           2,
+          11,
+          2,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
           5,
           null,
           null,
+          null,
+          5,
+          null,
           null
         ]
       },
-      "/home/renbrent/github/LLNL_TEAM/LLNL/app/models/assembler.rb": {
+      "/Users/mvalizadeh/LLNL/app/models/exclusion.rb": {
         "lines": [
           1,
           null,
           1,
-          null,
-          2,
-          null,
-          2,
-          10,
+          5,
+          6,
           null,
           null,
-          null,
-          2,
-          4,
-          15,
+          null
+        ]
+      },
+      "/Users/mvalizadeh/LLNL/app/models/inclusion.rb": {
+        "lines": [
+          1,
+          1,
+          6,
           3,
-          2,
-          null,
-          1,
-          4,
-          1,
-          1,
+          17,
           null,
           null,
           null,
+          3,
           null,
-          null,
-          2,
-          null,
-          null,
-          null,
-          2,
+          6,
+
           null,
           null
         ]
       }
     },
-    "timestamp": 1698090718
+
+    "timestamp": 1698250604
   },
   "Cucumber Features": {
     "coverage": {
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/user.rb": {
+      "/Users/mvalizadeh/LLNL/app/models/user.rb": {
         "lines": [
           1,
           null,
@@ -107,34 +116,95 @@
           null
         ]
       },
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/application_record.rb": {
+      "/Users/mvalizadeh/LLNL/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/helpers/application_helper.rb": {
+      "/Users/mvalizadeh/LLNL/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/helpers/welcome_helper.rb": {
+      "/Users/mvalizadeh/LLNL/app/helpers/welcome_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/inclusion.rb": {
+      "/Users/mvalizadeh/LLNL/app/models/inclusion.rb": {
         "lines": [
+          1,
+          1,
+          4,
+          4,
+          28,
+          null,
+          null,
+          null,
           0,
-          0
-        ],
-        "branches": {
-        }
+          null,
+          4,
+          null,
+          null
+        ]
+      },
+      "/Users/mvalizadeh/LLNL/app/models/exclusion.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          4,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/mvalizadeh/LLNL/app/models/assembler.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          4,
+          4,
+          4,
+          20,
+          null,
+          null,
+          null,
+          0,
+          null,
+          null,
+          4,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          4,
+          null,
+          null,
+          null,
+          4,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1697211531
+    "timestamp": 1698247092
   }
 }
