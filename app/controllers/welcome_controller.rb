@@ -36,12 +36,7 @@ class WelcomeController < ApplicationController
             return
         end
 
-        if Rails.env.test?
-            json_data = fetch_data
-            json_data = JSON.parse(json_data)
-        else
-            json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
-        end
+        json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
 
         # Calls to the inclusion, exclusion models
         inclusion = Inclusion.new
