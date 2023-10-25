@@ -44,8 +44,11 @@ class WelcomeController < ApplicationController
         assembler = Assembler.new
 
         included_edges = inclusion.includeNodes(include_data, json_data)
+        puts "included_edges", included_edges
         included_edges = exclusion.excludeNodes(included_edges, exclude_data)
+        puts "Included_edges", included_edges
         final_data = assembler.assemble(include_data, included_edges, json_data)
+        puts "final", final_data
 
         # Save the updated JSON data back to data.json
         begin

@@ -23,24 +23,7 @@
     }
   ],
   "edges": [
-    {
-      "data": {
-        "source": "node1",
-        "target": "node2"
-      }
-    },
-    {
-      "data": {
-        "source": "node3",
-        "target": "node2"
-      }
-    },
-    {
-      "data": {
-        "source": "node1",
-        "target": "node5"
-      }
-    }
+
   ]
 
 }

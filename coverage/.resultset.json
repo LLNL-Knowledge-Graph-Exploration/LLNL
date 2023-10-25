@@ -135,12 +135,20 @@
       },
       "/Users/mvalizadeh/LLNL/app/models/inclusion.rb": {
         "lines": [
+          0,
+          0
+        ],
+        "branches": {
+        }
+      }
+    },
+    "timestamp": 1697816576
+  },
+  "Cucumber Features": {
+    "coverage": {
+      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/user.rb": {
+        "lines": [
           1,
-          1,
-          4,
-          4,
-          28,
-          null,
           null,
           null,
           0,
@@ -201,8 +209,16 @@
           null,
           null
         ]
+      },
+      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/inclusion.rb": {
+        "lines": [
+          0,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1698247092
+    "timestamp": 1697211531
   }
 }

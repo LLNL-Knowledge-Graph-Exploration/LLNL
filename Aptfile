@@ -15,3 +15,4 @@ binutils
 nlohmann-json3-dev
 libstdc++-11-dev
 mpich
+libc6-dev
