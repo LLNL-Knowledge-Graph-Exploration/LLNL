@@ -41,7 +41,7 @@ Ruby Version: `3.2.2`
 
     - Run Cucumber Tests
 
-        - `bundle exec cucumber <test path>`
+        - `RAILS_ENV=test bundle exec cucumber <test path>`
 
     - Run rspec
 

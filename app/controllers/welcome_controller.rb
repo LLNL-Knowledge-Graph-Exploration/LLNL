@@ -26,7 +26,11 @@ class WelcomeController < ApplicationController
         puts "Hello I am Processing Data"
 
         # Fetch and parse the current data.json
-        json_file_path_in = Rails.root.join('db', 'data.json')
+        json_file_path_in = if Rails.env.test?
+                                Rails.root.join('db', 'test_data.json')
+                            else
+                                Rails.root.join('db', 'data.json')
+                            end
         json_file_path_out = Rails.root.join('public', 'data.json')
 
         begin

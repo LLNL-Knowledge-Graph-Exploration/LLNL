@@ -1,6 +1,6 @@
   Given("the JSON file contains the following data:") do |table|
     json_data = table.hashes.map { |row| { "data" => { "id" => row['id'] } } }
-    json_file_path = Rails.root.join('public', 'data.json')
+    json_file_path = Rails.root.join('db', 'test_data.json')
     File.write(json_file_path, JSON.pretty_generate({ "nodes" => json_data, "edges" => [] }))
   end
 
@@ -19,7 +19,7 @@
   
   Given("the graph:") do |table|
     json_data = table.hashes.map { |row| { "data" => { "id" => row['id'] } } }
-    json_file_path = Rails.root.join('public', 'data.json')
+    json_file_path = Rails.root.join('db', 'test_data.json')
     File.write(json_file_path, JSON.pretty_generate({ "nodes" => json_data, "edges" => [] }))
   end
 
@@ -39,7 +39,7 @@
   
   Given('a graph with no associated edges:') do |table|
     json_data = table.hashes.map { |row| { "data" => { "id" => row['id'] } } }
-    json_file_path = Rails.root.join('public', 'data.json')
+    json_file_path = Rails.root.join('db', 'test_data.json')
     File.write(json_file_path, JSON.pretty_generate({ "nodes" => json_data, "edges" => [] }))
   end
   
@@ -59,7 +59,7 @@
   
   Given('any graph:') do |table|
     json_data = table.hashes.map { |row| { "data" => { "id" => row['id'] } } }
-    json_file_path = Rails.root.join('public', 'data.json')
+    json_file_path = Rails.root.join('db', 'test_data.json')
     File.write(json_file_path, JSON.pretty_generate({ "nodes" => json_data, "edges" => [] }))
   end
   
