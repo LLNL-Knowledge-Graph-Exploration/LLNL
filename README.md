@@ -41,8 +41,21 @@ Ruby Version: `3.2.2`
 
     - Run Cucumber Tests
 
-        - `bundle exec cucumber <test path>`
+        - `RAILS_ENV=test bundle exec cucumber <test path>`
 
     - Run rspec
 
         - `bundle exec rspec <test path>`
+
+# Working with llnl/metall
+1. Before you compile: 
+```export LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11:$LIBRARY_PATH```
+2. `git clone https://github.com/LLNL/metall`
+3. `export METALL_INCLUDE=$PWD/metall/include`
+4. Download Boost
+```
+wget https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.gz
+tar xvf boost_1_78_0.tar.gz
+export BOOST_ROOT=$PWD/boost_1_78_0
+```
+5. Add the line set(CMAKE_CXX_COMPILER g++-11) to the CMakeLists.txt in the metall repo.

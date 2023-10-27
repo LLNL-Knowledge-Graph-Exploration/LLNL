@@ -1,58 +1,61 @@
 require 'rails_helper'
 
 RSpec.describe Inclusion, type: :model do
+  describe '#includeNodes' do
+    it 'handles included edges when json_data is provided' do
+      inclusion = Inclusion.new
 
+      # Sample data
+      include_data = ['node1', 'node2', 'node3']
+      json_data = {
+        'edges' => [
+          { 'data' => { 'source' => 'node1', 'target' => 'node2' } },
+          { 'data' => { 'source' => 'node2', 'target' => 'node3' } },
+          { 'data' => { 'source' => 'node4', 'target' => 'node5' } },
+        ]
+      }
 
-  subject { described_class.new(vid: "Austin") }
+      result = inclusion.includeNodes(include_data, json_data)
 
-  it "is valid with a valid vid" do
-    expect(subject).to be_valid
-  end
+      # Expectations
+      expected_included_edges = [
+        { 'data' => { 'source' => 'node1', 'target' => 'node2' } },
+        { 'data' => { 'source' => 'node2', 'target' => 'node3' } }
+      ]
 
-  it "is not valid with an empty vid" do
-    subject.vid = nil
-    expect(subject).to_not be_valid
-  end
+      expect(result).to eq(expected_included_edges)
+    end
 
-  it "is not valid with a lowercase vid" do
-    subject.vid = "chicago"
-    expect(subject).to_not be_valid
-  end
+    it 'handles included edges when json_data is not as expected' do
+      inclusion = Inclusion.new
 
-  it "is valid with an all-uppercase vid" do
-    subject.vid = "AUSTIN"
-    expect(subject).to be_valid
-  end
+      # Sample data
+      include_data = ['node1', 'node2', 'node3']
+      json_data = nil
 
-  it "is not valid with a capitalized vid and numbers" do
-    subject.vid = "Austin123"
-    expect(subject).to_not be_valid
-  end
+      result = inclusion.includeNodes(include_data, json_data)
 
-  it "is not valid since it is not in the database" do
-    subject.vid = "Rome"
-    expect(subject).to_not be_valid
-  end
+      # Expectation: When json_data is nil, the result should be an empty array.
+      expect(result).to eq([])
+    end
 
-  it "is not valid with special characters in vid" do
-    subject.vid = "Austin!"
-    expect(subject).to_not be_valid
-  end
+    it 'handles included edges when json_data does not contain edges' do
+      inclusion = Inclusion.new
 
-  it "is not valid with a vid longer than 255 characters" do
-    subject.vid = "A" * 256
-    expect(subject).to_not be_valid
-  end
+      # Sample data
+      include_data = ['node1', 'node2', 'node3']
+      json_data = {
+        'nodes' => [
+          { 'data' => { 'id' => 'node1' } },
+          { 'data' => { 'id' => 'node2' } },
+          { 'data' => { 'id' => 'node3' } }
+        ]
+      }
 
-  it "is valid with showing all edges" do
-    subject.vid = "Austin"
-    expect(subject).to eq("ae", "ab")
-  end
+      result = inclusion.includeNodes(include_data, json_data)
 
-  it "is not valid because it is not showing correct edges" do
-    subject.vid = "Austin"
-    expect(subject).to_not eq("lb")
+      # Expectation: When json_data does not contain edges, the result should be an empty array.
+      expect(result).to eq([])
+    end
   end
 end
-
-

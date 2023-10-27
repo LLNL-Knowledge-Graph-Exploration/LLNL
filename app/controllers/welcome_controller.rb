@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
-    before_action :authenticate_user!
+    before_action :authenticate_user! , except: [:process_data]
 
     # app/controllers/your_controller.rb
     # g++ public/test.cpp -o public/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
@@ -16,45 +16,48 @@ class WelcomeController < ApplicationController
         exclude_data = params[:exclude] || []
         budget = params[:budget]
         
+        # Throw error if user puts the same node in include and exclude
+        common_nodes = include_data & exclude_data
+        if common_nodes.any?
+            render json: { error: "Some nodes are both included and excluded: #{common_nodes.join(', ')}" }, status: :unprocessable_entity
+            return
+        end
+
         puts "Hello I am Processing Data"
 
         # Fetch and parse the current data.json
-        json_file_path = Rails.root.join('public', 'data.json')
-        # json_data = File.exist?(json_file_path) ? JSON.parse(File.read(json_file_path)) : {}
-        
-        json_data = fetch_data
-        json_data = JSON.parse(json_data)
-    
-        # Process and update the JSON data as needed
-        included_edges = json_data['edges'].select do |edge|
-            include_data.include?(edge['data']['source']) || include_data.include?(edge['data']['target'])
+        json_file_path_in = if Rails.env.test?
+                                Rails.root.join('db', 'test_data.json')
+                            else
+                                Rails.root.join('db', 'data.json')
+                            end
+        json_file_path_out = Rails.root.join('public', 'data.json')
+
+        begin
+            json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
+        rescue JSON::ParserError => e
+            render json: { error: "Error reading data.json: #{e.message}" }, status: :internal_server_error
+            return
         end
 
-        nodes = []
+        json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
 
-        json_data['nodes'].each do |node|
-            nodes << node if include_data.include?(node['data']['id'])
-        end
+        # Calls to the inclusion, exclusion models
+        inclusion = Inclusion.new
+        exclusion = Exclusion.new
+        assembler = Assembler.new
 
-        included_edges.each do |edge|
-            if include_data.include?(edge['data']['source'])
-                nodes << json_data['nodes'].find { |node| node['data']['id'] == edge['data']['target'] }
-            elsif include_data.include?(edge['data']['target'])
-                nodes << json_data['nodes'].find { |node| node['data']['id'] == edge['data']['source'] }
-            end
-        end
-
-        included_data = {
-            'nodes' => nodes,
-            'edges' => included_edges
-        }
-
-        puts included_data
-
+        included_edges = inclusion.includeNodes(include_data, json_data)
+        included_edges = exclusion.excludeNodes(included_edges, exclude_data)
+        final_data = assembler.assemble(include_data, included_edges, json_data)
 
         # Save the updated JSON data back to data.json
-        File.write(json_file_path, JSON.pretty_generate(included_data))
-    
+        begin
+            File.write(json_file_path_out, JSON.pretty_generate(final_data))
+        rescue Errno::EACCES, Errno::EIO, Errno::EPIPE => e
+            render json: { error: "Error writing data.json: #{e.message}" }, status: :internal_server_error
+            return
+        end
         render json: { message: 'Data processed and updated successfully' }
       end
 
