@@ -22,19 +22,25 @@
     align-items: center;
     text-align: center;
     background-color: #f4f4f8;
-    margin: 40px;
+    margin: 0px;
+}
+.heading {
+    text-align: center;
 }
 header {
     background-color: #333;
     color: #fff;
-    padding: 20px 0;
     width: 100%;
+}
+header form {
+    background-color:#333;
+    float: right;
+    padding: 0px;
 }
 .container {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 20px;
 }
 .left-column {
     flex: 1;
@@ -65,7 +71,10 @@ form {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    height: 80%;
+}
+
+.uploadForm {
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -73,6 +82,7 @@ h2 {
     border-bottom: 2px solid #3498db;
     margin-bottom: 20px;
     padding-bottom: 10px;
+    margin-top: 0px;
 }
 
 .dynamic-field {
