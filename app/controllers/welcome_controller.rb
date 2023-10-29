@@ -32,6 +32,9 @@ class WelcomeController < ApplicationController
                                 Rails.root.join('db', 'data.json')
                             end
         json_file_path_out = Rails.root.join('public', 'data.json')
+        if params[:uploadedFile].present? && params[:uploadedFile].respond_to?(:read)
+            file = File.write(json_file_path_in, params[:uploadedFile].read)
+        end
 
         begin
             json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
