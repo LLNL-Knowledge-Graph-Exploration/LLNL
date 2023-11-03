@@ -33,8 +33,8 @@
                             <input type="text" name="include[]" placeholder="Include Text" required>
                         </div>
                     </div>
-                    <button type="button" onclick="addField('includeFields')">Add More</button>
-                    <button type="button" onclick="removeField('includeFields')">Remove</button>
+                    <button type="button" onclick="includeField('includeFields')">Add More</button>
+                    <button type="button" onclick="removeInput('includeFields')">Remove</button>
                 </div>
 
                 <!-- Exclude Section -->
@@ -45,8 +45,8 @@
                             <input type="text" name="exclude[]" placeholder="Exclude Text">
                         </div>
                     </div>
-                    <button type="button" onclick="addField('excludeFields')">Add More</button>
-                    <button type="button" onclick="removeField('excludeFields')">Remove</button>
+                    <button type="button" onclick="includeField('excludeFields')">Add More</button>
+                    <button type="button" onclick="removeInput('excludeFields')">Remove</button>
                 </div>
 
                 <!-- Budget Section -->
@@ -56,7 +56,7 @@
                 </div>
 
                 <br>
-                <input type="submit" value="Submit">
+                <input id="mainFormSubmit" type="submit" value="Submit">
             </form>
         </div>
         <div class="center-column">
@@ -69,8 +69,8 @@
             <h4 id="nodeId"></h4>
             <table id="metaDataTable"></table>
             <br>
-            <button id="metaDataInclude" type="button" onclick="addField('includeFields')" hidden>Include</button>
-            <button id="metaDataExclude" type="button" onclick="removeField('excludeFields')" hidden>Exclude</button>
+            <button id="metaDataInclude" type="button" onclick="includeField('includeFields')" hidden>Include</button>
+            <button id="metaDataExclude" type="button" onclick="removeField(this)" data-container-id="excludeFields" data-id="" hidden>Exclude</button>
           </form>
         </div>
     </div>
@@ -87,13 +87,48 @@
             }
 
             container.appendChild(field);
+            return field;
         }
 
-        function removeField(containerId) {
+        function includeField(containerId) {
+            var field = addField(containerId);
+            if (field == null){
+                console.log('Error creating field');
+            }
+        }
+
+        function removeInput(containerId) {
             const container = document.getElementById(containerId);
             const allFields = container.querySelectorAll('.dynamic-field');
             if (allFields.length > 1) {
                 allFields[allFields.length - 1].remove();
+            }
+        }
+
+        function removeField(element) {
+            debugger;
+            
+            const container = document.getElementById(element.dataset.containerId);
+            const allFields = container.querySelectorAll('.dynamic-field');
+            
+            if (allFields != null) {
+                var found = false;
+                for (var i = 0, n = allFields.length; i < n; i = i + 1) {
+                    found = allFields[i].children[0].value === element.dataset.id;
+
+                    if (found){
+                        return;
+                    }
+                }
+
+                var field = addField(element.dataset.containerId);
+                
+                if (field == null){
+                    console.log('Error creating field');
+                }
+
+                field.children[0].value = element.dataset.id;
+                document.getElementById('mainFormSubmit').click();
             }
         }
     </script>
@@ -133,6 +168,8 @@
                   document.getElementById("nodeId").textContent = this.data("id");
                   document.getElementById("metaDataInclude").removeAttribute('hidden');
                   document.getElementById("metaDataExclude").removeAttribute('hidden');
+                  document.getElementById("metaDataInclude").setAttribute('data-id', this.id());
+                  document.getElementById("metaDataExclude").setAttribute('data-id', this.id());
                   var table = document.getElementById("metaDataTable");
                   while (table.firstChild) {
                       table.removeChild(table.firstChild);
