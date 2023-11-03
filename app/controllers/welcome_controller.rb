@@ -49,14 +49,17 @@ class WelcomeController < ApplicationController
         inclusion = Inclusion.new
         exclusion = Exclusion.new
         assembler = Assembler.new
+        budgeter = Budget.new
 
         included_edges = inclusion.includeNodes(include_data, json_data)
         included_edges = exclusion.excludeNodes(included_edges, exclude_data)
         final_data = assembler.assemble(include_data, included_edges, json_data)
 
+        budgeted_final_data = budgeter.modify_nodes(final_data, budget.to_i, include_data)
+
         # Save the updated JSON data back to data.json
         begin
-            File.write(json_file_path_out, JSON.pretty_generate(final_data))
+            File.write(json_file_path_out, JSON.pretty_generate(budgeted_final_data))
         rescue Errno::EACCES, Errno::EIO, Errno::EPIPE => e
             render json: { error: "Error writing data.json: #{e.message}" }, status: :internal_server_error
             return
