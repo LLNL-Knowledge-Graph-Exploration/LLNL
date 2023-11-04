@@ -9,9 +9,48 @@
       "data": {
         "id": "node2"
       }
+    },
+    {
+      "data": {
+        "id": "node3"
+      }
+    },
+    {
+      "data": {
+        "id": "node4"
+      }
+    },
+    {
+      "data": {
+        "id": "node7"
+      }
     }
   ],
   "edges": [
+    {
+      "data": {
+        "source": "node1",
+        "target": "node4"
+      }
+    },
+    {
+      "data": {
+        "source": "node2",
+        "target": "node7"
+      }
+    },
+    {
+      "data": {
+        "source": "node3",
+        "target": "node2"
+      }
+    },
+    {
+      "data": {
+        "source": "node2",
+        "target": "node4"
+      }
+    },
     {
       "data": {
         "source": "node1",
