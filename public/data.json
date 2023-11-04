@@ -1,24 +1,8 @@
 {
   "nodes": [
-    {
-      "data": {
-        "id": "node1"
-      }
-    },
-    {
-      "data": {
-        "id": "node2"
-      }
-    }
+
   ],
   "edges": [
-    {
-      "data": {
-        "id": "12",
-        "weight": "1",
-        "source": "node1",
-        "target": "node2"
-      }
-    }
+
   ]
 }

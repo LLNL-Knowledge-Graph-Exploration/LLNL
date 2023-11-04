@@ -23,7 +23,7 @@ When('user includes [{string},{string}], budget is {int} and hits submit') do |s
   page.driver.post('/process_data', include: [string1, string2], budget: budget)
 end
 
-Then('user should see {string}') do |error_message|
+Then('user should observe {string}') do |error_message|
   expect(page).to have_content(error_message)
 end
 

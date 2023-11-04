@@ -21,6 +21,11 @@ class Budget
         # Stop if budget is reached
         break if included_nodes.size >= budget
       end
+
+      # If budget is exceeded, return an error message
+      if included_nodes.size > budget
+        return nil
+      end
   
       # If budget allows, include additional nodes that are not yet included and connected by edges
       if included_nodes.size < budget

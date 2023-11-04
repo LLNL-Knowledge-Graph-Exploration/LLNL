@@ -63,7 +63,7 @@ Feature: budget feature of graph
     And I press "Log in"
     Then I should see "Signed in successfully"
     When user includes ["node1","node2"], budget is 1 and hits submit
-    Then user should see "The number of included nodes is higher than budget"
+    Then user should observe "The number of included nodes exceeds the budget"
 
 
 

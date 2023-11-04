@@ -57,6 +57,10 @@ class WelcomeController < ApplicationController
 
         unless budget.nil? || budget.empty?
             final_data = budgeter.modify_nodes(final_data, budget.to_i, include_data)
+            if final_data.nil?
+                render json: { error: "The number of included nodes exceeds the budget" }, status: :unprocessable_entity
+                return
+            end
         end
         # Save the updated JSON data back to data.json
         begin
