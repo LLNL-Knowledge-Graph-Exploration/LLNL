@@ -75,10 +75,12 @@
         </div>
     </div>
     <script>
+        num_fields = 1;
         function addField(containerId) {
             const container = document.getElementById(containerId);
             const field = document.createElement("div");
             field.classList.add("dynamic-field");
+            num_fields += 1;
 
             if(containerId === 'includeFields') {
                 field.innerHTML = '<input type="text" name="include[]" placeholder="Include Text" required>';
@@ -95,7 +97,23 @@
             if (allFields.length > 1) {
                 allFields[allFields.length - 1].remove();
             }
+            num_fields -= 1;
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById('mainForm');
+            form.addEventListener('submit', function(event) {
+                const budgetInput = document.getElementById('budgetInput');
+                const budgetValue = parseInt(budgetInput.value, 10);
+                
+                if (budgetValue < num_fields) {
+                event.preventDefault(); // Stop the form from submitting
+                alert('The number of included nodes exceeds the budget'); // Inform the user
+                // You can also display this message in a more user-friendly way instead of an alert
+                }
+                // If the budget is 6 or more, the form will proceed with the submission
+            });
+        });
     </script>
     <script type="module">
     import cytoscape from "cytoscape";
@@ -173,12 +191,13 @@
         } else {
             const errorResponse = await response.json();
             console.error('Error:', errorResponse.error);
+            alert(errorResponse.error); // Simple alert
         }
     } catch (error) {
         console.error('Error:', error);
+        alert(error.message); // Simple alert for catch block error
     }
     });
-
     </script>
 </body>
 </html>
