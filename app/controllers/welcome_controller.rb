@@ -16,6 +16,11 @@ class WelcomeController < ApplicationController
         exclude_data = params[:exclude] || []
         budget = params[:budget]
 
+        params_data = {"include"=> include_data, "exclude"=> exclude_data, "budget"=> budget}
+
+        params_file_path_out = Rails.root.join('public', 'params.json')
+        File.write(params_file_path_out, JSON.pretty_generate(params_data))
+
         puts fetch_data
         
         # Throw error if user puts the same node in include and exclude
@@ -58,7 +63,7 @@ class WelcomeController < ApplicationController
 
         # Save the updated JSON data back to data.json
         begin
-            File.write(json_file_path_out, JSON.pretty_generate(final_data))
+            File.write(json_file_path_out, JSON.pretty_generate(fetch_data))
         rescue Errno::EACCES, Errno::EIO, Errno::EPIPE => e
             render json: { error: "Error writing data.json: #{e.message}" }, status: :internal_server_error
             return
