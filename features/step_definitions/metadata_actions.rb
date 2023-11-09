@@ -1,6 +1,10 @@
-Given('metadata is displayed') do
-    puts root_path
+Given('node a has been clicked') do
     visit root_path
+    sleep 1
+    page.execute_script('handleNodeClick("a");')
+end
+
+And('the Metadata is displayed') do
     within('#metaDataForm') do
         expect(page).to have_content('Meta Data')
         expect(page).to have_selector('h4#nodeId', visible: true)

@@ -4,6 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SubGraph Visualization</title>
+    
+    <script type="module">
+        import cytoscape from "cytoscape";
+        window.cytoscape = cytoscape;
+        function fetchData() {
+            fetch('/data.json')
+            .then(response => response.json())
+            .then(data => {
+                var cy = cytoscape({
+                    container: document.getElementById('cy'),
+                    elements: data,
+                    style: [
+                        {
+                            selector: 'node',
+                            style: {
+                                'background-color': '#666',
+                                'label': 'data(id)'
+                            }
+                        },
+                        {
+                            selector: 'edge',
+                            style: {
+                                'width': 3,
+                                'line-color': '#ccc',
+                                'target-arrow-color': '#ccc',
+                                'target-arrow-shape': 'none',
+                                'curve-style': 'bezier'
+                            }
+                        },
+                    ],
+
+                });
+                window.cy = cy;
+                cy.on('click', 'node', function(evt){
+                    console.log( 'clicked ' + this.id() );
+                    document.getElementById("nodeId").textContent = this.data("id");
+                    document.getElementById("metaDataInclude").removeAttribute('hidden');
+                    document.getElementById("metaDataExclude").removeAttribute('hidden');
+                    document.getElementById("metaDataInclude").setAttribute('data-id', this.id());
+                    document.getElementById("metaDataExclude").setAttribute('data-id', this.id());
+                    var table = document.getElementById("metaDataTable");
+                    while (table.firstChild) {
+                        table.removeChild(table.firstChild);
+                    }
+                    var data = this.data();
+                    // Loop through the data
+                    for (const key in data) {
+                        if (data.hasOwnProperty(key) && key!="id") {
+                            const newRow = table.insertRow(table.rows.length);
+
+                            const cell1 = newRow.insertCell(0);
+                            const cell2 = newRow.insertCell(1);
+
+                            cell1.innerHTML = key;
+                            cell2.innerHTML = data[key];
+                        }
+                    }
+                })
+            });
+        }
+
+        function handleNodeClick(nodeIdToSelect) {
+            // Simulate the actions that occur when a node is clicked
+            console.log("Simulating node click");
+
+            const node = cy.$(`#${nodeIdToSelect}`);
+            node.select();
+            var nodeId = nodeIdToSelect;
+            document.getElementById("nodeId").textContent = nodeId;
+            
+            var table = document.getElementById("metaDataTable");
+            while (table.firstChild) {
+                table.removeChild(table.firstChild);
+            }
+            var data = node.data();
+            for (const key in data) {
+                if (data.hasOwnProperty(key) && key !== "id") {
+                const newRow = table.insertRow(table.rows.length);
+                const cell1 = newRow.insertCell(0);
+                const cell2 = newRow.insertCell(1);
+                cell1.innerHTML = key;
+                cell2.innerHTML = data[key];
+                }
+            }
+        }
+        window.handleNodeClick = handleNodeClick;
+        // Call fetchData() when the page is originally rendered
+        fetchData();
+
+        document.getElementById('mainForm').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        const formData = new FormData(event.target); // Get form data
+
+        try {
+            const response = await fetch('/process_data', {
+            method: 'POST',
+            body: formData,
+            });
+
+            if (response.ok) {
+            // Handle success, maybe update the UI
+            // Reload the graph or display a success message
+            // You may also fetch and reload the updated data.json here
+            fetchData();
+            } else {
+                const errorResponse = await response.json();
+                console.error('Error:', errorResponse.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        });
+    </script>
+    
 </head>
 <body>
     <header>
@@ -132,90 +247,5 @@
             }
         }
     </script>
-    <script type="module">
-    import cytoscape from "cytoscape";
-
-    function fetchData() {
-        fetch('/data.json')
-          .then(response => response.json())
-          .then(data => {
-              var cy = cytoscape({
-                  container: document.getElementById('cy'),
-                  elements: data,
-                  style: [
-                      {
-                          selector: 'node',
-                          style: {
-                              'background-color': '#666',
-                              'label': 'data(id)'
-                          }
-                      },
-                      {
-                          selector: 'edge',
-                          style: {
-                              'width': 3,
-                              'line-color': '#ccc',
-                              'target-arrow-color': '#ccc',
-                              'target-arrow-shape': 'none',
-                              'curve-style': 'bezier'
-                          }
-                      },
-                  ],
-
-              });
-              cy.on('click', 'node', function(evt){
-                  console.log( 'clicked ' + this.id() );
-                  document.getElementById("nodeId").textContent = this.data("id");
-                  document.getElementById("metaDataInclude").removeAttribute('hidden');
-                  document.getElementById("metaDataExclude").removeAttribute('hidden');
-                  document.getElementById("metaDataInclude").setAttribute('data-id', this.id());
-                  document.getElementById("metaDataExclude").setAttribute('data-id', this.id());
-                  var table = document.getElementById("metaDataTable");
-                  while (table.firstChild) {
-                      table.removeChild(table.firstChild);
-                  }
-                  var data = this.data();
-                  // Loop through the data
-                  for (const key in data) {
-                      if (data.hasOwnProperty(key) && key!="id") {
-                          const newRow = table.insertRow(table.rows.length);
-
-                          const cell1 = newRow.insertCell(0);
-                          const cell2 = newRow.insertCell(1);
-
-                          cell1.innerHTML = key;
-                          cell2.innerHTML = data[key];
-                      }
-                  }
-              })
-          });
-    }
-
-    document.getElementById('mainForm').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    const formData = new FormData(event.target); // Get form data
-
-    try {
-        const response = await fetch('/process_data', {
-        method: 'POST',
-        body: formData,
-        });
-
-        if (response.ok) {
-        // Handle success, maybe update the UI
-        // Reload the graph or display a success message
-        // You may also fetch and reload the updated data.json here
-        fetchData();
-        } else {
-            const errorResponse = await response.json();
-            console.error('Error:', errorResponse.error);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-    });
-
-    </script>
-</body>
+    </body>
 </html>

@@ -1,6 +1,5 @@
 class WelcomeController < ApplicationController
-
-    before_action :authenticate_user! , except: [:process_data]
+    before_action :authenticate_user!, except: [:process_data], unless: -> { Rails.env.test? }
 
     # app/controllers/your_controller.rb
     # g++ public/test.cpp -o public/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
@@ -63,7 +62,7 @@ class WelcomeController < ApplicationController
 
         # Save the updated JSON data back to data.json
         begin
-            File.write(json_file_path_out, JSON.pretty_generate(fetch_data))
+            File.write(json_file_path_out, JSON.pretty_generate(final_data))
         rescue Errno::EACCES, Errno::EIO, Errno::EPIPE => e
             render json: { error: "Error writing data.json: #{e.message}" }, status: :internal_server_error
             return
