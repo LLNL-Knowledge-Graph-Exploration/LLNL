@@ -71,9 +71,16 @@
 
             const node = cy.$(`#${nodeIdToSelect}`);
             node.select();
-            var nodeId = nodeIdToSelect;
+            console.log("Node selected")
+            var nodeId = node.id();
+            console.log("Got nodeId")
             document.getElementById("nodeId").textContent = nodeId;
-            
+            document.getElementById("metaDataInclude").removeAttribute('hidden');
+            document.getElementById("metaDataExclude").removeAttribute('hidden');
+            console.log("Include and Exclude are showing up")
+            document.getElementById("metaDataInclude").setAttribute('data-id', nodeId);
+            document.getElementById("metaDataExclude").setAttribute('data-id', nodeId);
+            console.log("Got nodeId")
             var table = document.getElementById("metaDataTable");
             while (table.firstChild) {
                 table.removeChild(table.firstChild);
@@ -90,6 +97,13 @@
             }
         }
         window.handleNodeClick = handleNodeClick;
+
+        function getCurrentNodesInGraph() {
+            const currentNodes = cy.nodes().map(node => node.id());
+            return currentNodes;
+        }
+        window.getCurrentNodesInGraph = getCurrentNodesInGraph;
+
         // Call fetchData() when the page is originally rendered
         fetchData();
 
@@ -148,7 +162,7 @@
                             <input type="text" name="include[]" placeholder="Include Text" required>
                         </div>
                     </div>
-                    <button type="button" onclick="includeField('includeFields')">Add More</button>
+                    <button type="button" id="addMoreInclude" onclick="includeField('includeFields')">Add More</button>
                     <button type="button" onclick="removeInput('includeFields')">Remove</button>
                 </div>
 
@@ -160,7 +174,7 @@
                             <input type="text" name="exclude[]" placeholder="Exclude Text">
                         </div>
                     </div>
-                    <button type="button" onclick="includeField('excludeFields')">Add More</button>
+                    <button type="button" id="addMoreExclude" onclick="includeField('excludeFields')">Add More</button>
                     <button type="button" onclick="removeInput('excludeFields')">Remove</button>
                 </div>
 

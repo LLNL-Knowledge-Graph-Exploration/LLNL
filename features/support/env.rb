@@ -69,6 +69,16 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 require 'selenium-webdriver'
 
 Capybara.default_driver = :selenium
+# Capybara.register_driver :selenium do |app|
+#   Capybara::Selenium::Driver.new(app, browser: :chrome)
+# end
 Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless')
+  options.add_argument('--disable-gpu')
+  options.add_argument('--enable-logging')
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
+
+# Capybara.javascript_driver = :headless_chrome

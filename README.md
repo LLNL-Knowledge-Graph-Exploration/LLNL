@@ -41,11 +41,11 @@ Ruby Version: `3.2.2`
 
     - Run Cucumber Tests
 
-        - `RAILS_ENV=test bundle exec cucumber <test path>`
+        - `RAILS_ENV=test bundle exec cucumber <test path (optional)>`
 
     - Run rspec
 
-        - `bundle exec rspec <test path>`
+        - `bundle exec rspec <test path (optional)>`
 
 # Working with llnl/metall
 1. Before you compile: 
