@@ -1,6 +1,15 @@
 {
   "nodes": [
-
+    {
+      "data": {
+        "id": "node1"
+      }
+    },
+    {
+      "data": {
+        "id": "node2"
+      }
+    }
   ],
   "edges": [
 
