@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
     # g++ public/test.cpp -o public/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
     def fetch_data
         # system("g++ public/test.cpp -o public/test_program2 -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11")
-        json_data = `public/test_program2`
+        json_data = `public/consub`
         return json_data
     end
 
@@ -15,6 +15,8 @@ class WelcomeController < ApplicationController
         include_data = params[:include] || []
         exclude_data = params[:exclude] || []
         budget = params[:budget]
+
+        puts fetch_data
         
         # Throw error if user puts the same node in include and exclude
         common_nodes = include_data & exclude_data
