@@ -9,6 +9,11 @@
       "data": {
         "id": "node2"
       }
+    },
+    {
+      "data": {
+        "id": "node3"
+      }
     }
   ],
   "edges": [
