@@ -162,7 +162,9 @@
                             <input type="text" name="include[]" placeholder="Include Text" required>
                         </div>
                     </div>
+
                     <button type="button" id="addMoreInclude" onclick="includeField('includeFields')">Add More</button>
+
                     <button type="button" onclick="removeInput('includeFields')">Remove</button>
                 </div>
 
@@ -198,8 +200,8 @@
             <h4 id="nodeId"></h4>
             <table id="metaDataTable"></table>
             <br>
-            <button id="metaDataInclude" type="button" onclick="includeField('includeFields')" hidden>Include</button>
-            <button id="metaDataExclude" type="button" onclick="removeField(this)" data-container-id="excludeFields" data-id="" hidden>Exclude</button>
+            <button id="metaDataInclude" type="button" onclick="addFieldToForm(this)" data-container-id="includeFields" data-id="" hidden>Include</button>
+            <button id="metaDataExclude" type="button" onclick="addFieldToForm(this)" data-container-id="excludeFields" data-id="" hidden>Exclude</button>
           </form>
         </div>
     </div>
@@ -234,9 +236,7 @@
             }
         }
 
-        function removeField(element) {
-            debugger;
-            
+        function addFieldToForm(element) {
             const container = document.getElementById(element.dataset.containerId);
             const allFields = container.querySelectorAll('.dynamic-field');
             
@@ -261,5 +261,6 @@
             }
         }
     </script>
+    
     </body>
 </html>
