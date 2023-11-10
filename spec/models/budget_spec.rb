@@ -45,11 +45,5 @@ RSpec.describe Budget, type: :model do
       end
     end
 
-    # Add more test cases as needed, for instance:
-    # - Budget exceeding total number of nodes
-    # - Empty include_data
-    # - Budget is zero
-    # - Final data with no edges
-    # - Include_data with non-existent node IDs
   end
 end

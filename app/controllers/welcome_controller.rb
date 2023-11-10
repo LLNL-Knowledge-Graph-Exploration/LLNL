@@ -58,7 +58,6 @@ class WelcomeController < ApplicationController
         unless budget.nil? || budget.empty?
             final_data = budgeter.modify_nodes(final_data, budget.to_i, include_data)
             if final_data.is_a?(Hash) && final_data.key?('error')
-                puts "--------asd-------"
                 render json: { error: "The number of included nodes exceeds the budget" }, status: :internal_server_error
                 return
             end
