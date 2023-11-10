@@ -1,6 +1,9 @@
 Given('node a has been clicked') do
     visit root_path
     sleep 1
+    # Execute JavaScript to get the current nodes in the graph
+    current_nodes = page.execute_script('return getCurrentNodesInGraph();')
+    puts "Current Nodes:", current_nodes
     page.execute_script('handleNodeClick("a");')
 end
 
@@ -42,7 +45,7 @@ Then('the graph should not display the excluded node anymore.') do
 
     # Execute JavaScript to get the current nodes in the graph
     current_nodes = page.execute_script('return getCurrentNodesInGraph();')
-
+    puts "Current Nodes:", current_nodes
     # Check if the excluded node is not present in the current nodes
     expect(current_nodes).not_to include(selected_node_vid)
 end
