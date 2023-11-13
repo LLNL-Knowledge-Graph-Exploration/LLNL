@@ -1,0 +1,30 @@
+name: testing
+
+on:
+    push:
+      branches: [ dev ]
+    pull_request:
+      branches: [ main, dev ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2.2' # Adjust the version to your project requirements
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
+
+    - name: Run RSpec tests
+      run: bundle exec rspec
+
+    - name: Run Cucumber tests
+      run: bundle exec cucumber
