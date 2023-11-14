@@ -47,7 +47,7 @@ Ruby Version: `3.2.2`
 
         - `bundle exec rspec <test path>`
 
-5. Deploye to Heroku via Heroku CLI
+5. Deploy to Heroku via Heroku CLI
 
     NOTE: Heroku CLI must be installed in your system
 
