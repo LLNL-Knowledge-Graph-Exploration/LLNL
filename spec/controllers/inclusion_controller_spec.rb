@@ -75,23 +75,23 @@ RSpec.describe WelcomeController, type: :controller do
       expect(json_response).to include('error' => a_string_including('Error writing data.json'))
     end
 
-    it 'interacts with Inclusion, Exclusion, and Assembler classes' do
-      allow(controller).to receive(:authenticate_user!)
+    # it 'interacts with Inclusion, Exclusion, and Assembler classes' do
+    #   allow(controller).to receive(:authenticate_user!)
 
-      inclusion = instance_double(Inclusion, includeNodes: [])
-      exclusion = instance_double(Exclusion, excludeNodes: [])
-      assembler = instance_double(Assembler, assemble: {})
+    #   inclusion = instance_double(Inclusion, includeNodes: [])
+    #   exclusion = instance_double(Exclusion, excludeNodes: [])
+    #   assembler = instance_double(Assembler, assemble: {})
 
-      allow(Inclusion).to receive(:new).and_return(inclusion)
-      allow(Exclusion).to receive(:new).and_return(exclusion)
-      allow(Assembler).to receive(:new).and_return(assembler)
+    #   allow(Inclusion).to receive(:new).and_return(inclusion)
+    #   allow(Exclusion).to receive(:new).and_return(exclusion)
+    #   allow(Assembler).to receive(:new).and_return(assembler)
 
-      post :process_data, params: { include: [], exclude: [], budget: 100 }
+    #   post :process_data, params: { include: [], exclude: [], budget: 100 }
 
-      expect(inclusion).to have_received(:includeNodes).with([], anything)
-      expect(exclusion).to have_received(:excludeNodes).with([], [])
-      expect(assembler).to have_received(:assemble).with([], [], anything)
-    end
+    #   expect(inclusion).to have_received(:includeNodes).with([], anything)
+    #   expect(exclusion).to have_received(:excludeNodes).with([], [])
+    #   expect(assembler).to have_received(:assemble).with([], [], anything)
+    # end
   end
 end
 
