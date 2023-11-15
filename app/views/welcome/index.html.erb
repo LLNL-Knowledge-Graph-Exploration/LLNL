@@ -111,15 +111,30 @@
             
             if (allFields != null) {
                 var found = false;
+                var createField = true;
+                var fieldIndex = 0;
+                var field = null;
                 for (var i = 0, n = allFields.length; i < n; i = i + 1) {
                     found = allFields[i].children[0].value === element.dataset.id;
 
                     if (found){
                         return;
                     }
+
+                    if (allFields[i].children[0].value === ""){
+                        createField = false;
+                        fieldIndex = i;
+                        break;
+                    }
                 }
 
-                var field = addField(element.dataset.containerId);
+                if (createField){
+                    field = addField(element.dataset.containerId);
+                    
+                }
+                else{
+                    field = allFields[fieldIndex];
+                }
                 
                 if (field == null){
                     console.log('Error creating field');
