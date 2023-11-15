@@ -183,7 +183,7 @@
                 <!-- Budget Section -->
                 <div>
                     <h2>Budget</h2>
-                    <input type="number" name="budget" placeholder="Enter Budget">
+                    <input id="budgetInput" type="number" name="budget" placeholder="Enter Budget">
                 </div>
 
                 <br>
@@ -206,6 +206,7 @@
         </div>
     </div>
     <script>
+        num_fields = 1;
         function addField(containerId) {
             const container = document.getElementById(containerId);
             const fields = container.getElementsByClassName("dynamic-field");
@@ -215,6 +216,7 @@
 
             const field = document.createElement("div");
             field.classList.add("dynamic-field");
+            num_fields += 1;
 
             if (containerId === 'includeFields') {
                 field.innerHTML = `<input type="text" id="include${nextId}" name="include[]" placeholder="Include Text" required>`;
@@ -240,7 +242,24 @@
             if (allFields.length > 1) {
                 allFields[allFields.length - 1].remove();
             }
+            num_fields -= 1;
         }
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById('mainForm');
+            form.addEventListener('submit', function(event) {
+                const budgetInput = document.getElementById('budgetInput');
+                const budgetValue = parseInt(budgetInput.value, 10);
+                
+                if (budgetValue < num_fields) {
+                event.preventDefault(); // Stop the form from submitting
+                alert('The number of included nodes exceeds the budget'); // Inform the user
+                // You can also display this message in a more user-friendly way instead of an alert
+                }
+                // If the budget is 6 or more, the form will proceed with the submission
+            });
+        });
 
         function addFieldToForm(element) {
             const container = document.getElementById(element.dataset.containerId);
@@ -248,15 +267,30 @@
             
             if (allFields != null) {
                 var found = false;
+                var createField = true;
+                var fieldIndex = 0;
+                var field = null;
                 for (var i = 0, n = allFields.length; i < n; i = i + 1) {
                     found = allFields[i].children[0].value === element.dataset.id;
 
                     if (found){
                         return;
                     }
+
+                    if (allFields[i].children[0].value === ""){
+                        createField = false;
+                        fieldIndex = i;
+                        break;
+                    }
                 }
 
-                var field = addField(element.dataset.containerId);
+                if (createField){
+                    field = addField(element.dataset.containerId);
+                    
+                }
+                else{
+                    field = allFields[fieldIndex];
+                }
                 
                 if (field == null){
                     console.log('Error creating field');
@@ -266,7 +300,7 @@
                 document.getElementById('mainFormSubmit').click();
             }
         }
-    </script>
-    
+
+    </script>    
     </body>
 </html>

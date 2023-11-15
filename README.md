@@ -47,6 +47,32 @@ Ruby Version: `3.2.2`
 
         - `bundle exec rspec <test path (optional)>`
 
+5. Deploy to Heroku via Heroku CLI
+
+    NOTE: Heroku CLI must be installed in your system
+
+    - Login to Heroku
+
+        - `heroku login`
+
+    - Create a heroku app
+        
+        - `heroku create <app name>`
+    
+    - Add Heroku Postgres
+
+        - `heroku addons:create heroku-postgresql:mini`
+
+    - Commit any changes if needed
+
+        - `git add .`
+
+        - `git commit -m "initial commit"`
+
+    - Push to heroku
+
+        - `git push heroku main`
+
 # Working with llnl/metall
 1. Before you compile: 
 ```export LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11:$LIBRARY_PATH```
@@ -58,4 +84,8 @@ wget https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78
 tar xvf boost_1_78_0.tar.gz
 export BOOST_ROOT=$PWD/boost_1_78_0
 ```
-5. Add the line set(CMAKE_CXX_COMPILER g++-11) to the CMakeLists.txt in the metall repo.
+5. Add the line:
+```cpp
+set(CMAKE_CXX_COMPILER g++-11)
+```
+to the CMakeLists.txt in the metall repo.
