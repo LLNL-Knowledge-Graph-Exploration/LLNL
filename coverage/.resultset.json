@@ -88,19 +88,22 @@
           1,
           5,
           3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           3,
-          null,
-          null,
-          null,
-          2,
-          null,
-          5,
           null,
           null
         ]
       }
     },
-    "timestamp": 1699480326
+    "timestamp": 1699635673
   },
   "Cucumber Features": {
     "coverage": {
@@ -133,67 +136,55 @@
           null
         ]
       },
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/assembler.rb": {
+      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/inclusion.rb": {
         "lines": [
+          1,
+          1,
+          2,
           0,
           null,
-          0,
           null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           null,
-          0,
-          0,
           null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           null,
-          0,
-          0,
-          0,
-          0,
           null,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          null,
+          null,
+          null,
+          2,
+          null,
+          null
+        ]
       },
       "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/exclusion.rb": {
         "lines": [
+          1,
+          null,
+          1,
+          2,
           0,
           null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          null,
+          null
+        ]
       },
-      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/inclusion.rb": {
+      "/Users/bryantmcarthur/Documents/School/Grad School/Fall 2023/CS 606: Software Engineering/LLNL/app/models/assembler.rb": {
         "lines": [
+          1,
+          null,
+          1,
+          null,
+          2,
+          2,
+          2,
+          6,
+          null,
+          null,
+          null,
           0,
-          0,
-          0,
+          null,
+          null,
+          2,
           0,
           0,
           0,
@@ -203,12 +194,21 @@
           0,
           0,
           0,
-          0
-        ],
-        "branches": {
-        }
+          null,
+          null,
+          null,
+          null,
+          null,
+          2,
+          null,
+          null,
+          null,
+          2,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1699558430
+    "timestamp": 1700070952
   }
 }

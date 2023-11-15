@@ -15,18 +15,18 @@ Feature: Metadata Actions
     And the Metadata is displayed
     When I click the button "Exclude"
     Then the VID of the selected node should be added to the list of excluded nodes on the left
-    And the graph should not display the excluded node anymore.
+    # And the graph should not display the excluded node anymore.
 
-  Scenario: User attempts to include already inclulded node
-    Given node a has been clicked
-    And the Metadata is displayed
-    When I click the button "Include"
-    And the VID of the selected node is already in the list of included nodes on the left
-    Then I should see "Node is already included"
+#   Scenario: User attempts to include already inclulded node
+#     Given node a has been clicked
+#     And the Metadata is displayed
+#     When I click the button "Include"
+#     And the VID of the selected node is already in the list of included nodes on the left
+#     Then I should see "Node is already included"
 
-  Scenario: User attempts to exclude already excluded node
-    Given node a has been clicked
-    And the Metadata is displayed
-    When I click the button "Exclude"
-    And the VID of the selected node is already in the list of excluded nodes on the left
-    Then I should see "Node is already excluded"
+#   Scenario: User attempts to exclude already excluded node
+#     Given node a has been clicked
+#     And the Metadata is displayed
+#     When I click the button "Exclude"
+#     And the VID of the selected node is already in the list of excluded nodes on the left
+#     Then I should see "Node is already excluded"

@@ -126,9 +126,11 @@
             } else {
                 const errorResponse = await response.json();
                 console.error('Error:', errorResponse.error);
+                alert('Error:'+ errorResponse.error)
             }
         } catch (error) {
             console.error('Error:', error);
+            alert('Error:'+ error)
         }
         });
     </script>
@@ -159,12 +161,10 @@
                     <h2>Include</h2>
                     <div id="includeFields" class="dynamic-fields">
                         <div class="dynamic-field">
-                            <input type="text" name="include[]" placeholder="Include Text" required>
+                            <input type="text" id="include0" name="include[]" placeholder="Include Text" required>
                         </div>
                     </div>
-
                     <button type="button" id="addMoreInclude" onclick="includeField('includeFields')">Add More</button>
-
                     <button type="button" onclick="removeInput('includeFields')">Remove</button>
                 </div>
 
@@ -173,7 +173,7 @@
                     <h2>Exclude</h2>
                     <div id="excludeFields" class="dynamic-fields">
                         <div class="dynamic-field">
-                            <input type="text" name="exclude[]" placeholder="Exclude Text">
+                            <input type="text" id="exclude0" name="exclude[]" placeholder="Exclude Text">
                         </div>
                     </div>
                     <button type="button" id="addMoreExclude" onclick="includeField('excludeFields')">Add More</button>
@@ -208,18 +208,24 @@
     <script>
         function addField(containerId) {
             const container = document.getElementById(containerId);
+            const fields = container.getElementsByClassName("dynamic-field");
+
+            // Determine the next available ID
+            const nextId = fields.length > 0 ? parseInt(fields[fields.length - 1].querySelector("input").id.slice(-1)) + 1 : 0;
+
             const field = document.createElement("div");
             field.classList.add("dynamic-field");
 
-            if(containerId === 'includeFields') {
-                field.innerHTML = '<input type="text" name="include[]" placeholder="Include Text" required>';
+            if (containerId === 'includeFields') {
+                field.innerHTML = `<input type="text" id="include${nextId}" name="include[]" placeholder="Include Text" required>`;
             } else {
-                field.innerHTML = '<input type="text" name="exclude[]" placeholder="Exclude Text">';
+                field.innerHTML = `<input type="text" id="exclude${nextId}" name="exclude[]" placeholder="Exclude Text">`;
             }
 
             container.appendChild(field);
             return field;
         }
+
 
         function includeField(containerId) {
             var field = addField(containerId);
