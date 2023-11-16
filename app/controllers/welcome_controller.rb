@@ -6,6 +6,7 @@ class WelcomeController < ApplicationController
     def fetch_data
         # system("g++ public/test.cpp -o public/test_program2 -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11")
         json_data = system("public/consub > public/foo.out")
+        # json_data = system("cp db/data.json public/data.json")
         return json_data
     end
 

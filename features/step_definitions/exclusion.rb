@@ -35,6 +35,10 @@
   When('user excludes {string}, includes {string} and hits submit') do |node1, node2|
     visit root_path
     page.driver.post('/process_data', include: [node2], exclude: [node1])
+
+    # Remove the file referenced by json_file_path
+    # json_file_path = Rails.root.join('db', 'test_data.json')
+    # File.delete(json_file_path) if File.exist?(json_file_path)
   end
 
 

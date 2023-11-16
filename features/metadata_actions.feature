@@ -1,8 +1,19 @@
+@headless_chrome
 Feature: Metadata Actions
   As a user
   I need to be able to include or exclude nodes from the metadata tab
   The app should be able to add the node to the include or exclude list on the left side panel.
 
+  Background: Graph present
+    Given a graph:
+      | id | weight | source | target |
+      | ae | 1      | a      | e      |
+      | ab | 1      | a      | b      |
+      | be | 1      | b      | e      |
+      | bc | 1      | b      | c      |
+      | ce | 1      | c      | e      |
+      | cd | 1      | c      | d      |
+      | de | 1      | d      | e      |
   
   Scenario: User includes a new node
     Given node a has been clicked
