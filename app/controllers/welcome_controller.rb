@@ -19,7 +19,13 @@ class WelcomeController < ApplicationController
         params_data = {"include"=> include_data, "exclude"=> exclude_data, "budget"=> budget}
 
         params_file_path_out = Rails.root.join('public', 'params.json')
-        File.write(params_file_path_out, JSON.pretty_generate(params_data))
+
+        begin
+            File.write(params_file_path_out, JSON.pretty_generate(params_data))
+        rescue Errno::EACCES, Errno::EIO, Errno::EPIPE => e
+            render json: { error: "Error writing params.json: #{e.message}" }, status: :internal_server_error
+            return
+        end
 
         puts fetch_data
         

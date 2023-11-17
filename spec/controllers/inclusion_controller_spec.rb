@@ -67,12 +67,11 @@ RSpec.describe WelcomeController, type: :controller do
       allow(File).to receive(:write).and_raise(Errno::EACCES, 'Permission denied')
 
       post :process_data, params: { include: [], exclude: [], budget: 100 }
-
       expect(response).to have_http_status(:internal_server_error)
 
       json_response = JSON.parse(response.body)
 
-      expect(json_response).to include('error' => a_string_including('Error writing data.json'))
+      expect(json_response).to include('error' => a_string_including('Error writing params.json'))
     end
 
     # it 'interacts with Inclusion, Exclusion, and Assembler classes' do
