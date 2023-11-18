@@ -3,6 +3,20 @@ Knowledge Graph Exploration using Connection Subgraphs
 
 Link: [https://calm-taiga-61776-a8b4b3801c6c.herokuapp.com/](https://calm-taiga-61776-a8b4b3801c6c.herokuapp.com/)
 
+# Contact Information
+
+Product Owner: Bryant McArthur mcarthur@tamu.edu
+
+Scrum Master: Nick Soliman nbsoliman18@tamu.edu
+
+Brent Basiano bbasiano@tamu.edu
+
+Mahsa Valizadeh mvalizadeh@tamu.edu
+
+Aubrey Moulton amoulton@tamu.edu
+
+Vandna Venkata Krishnan vandnavenkat@tamu.edu
+
 # Prerequisites
 
 Ruby Version: `3.2.2`
@@ -81,7 +95,7 @@ Heroku CLI: [Link](https://devcenter.heroku.com/articles/heroku-cli)
 
         - `git push heroku main`
 
-# Working with llnl/metall
+<!-- # Working with llnl/metall
 1. Before you compile: 
 ```export LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11:$LIBRARY_PATH```
 2. `git clone https://github.com/LLNL/metall`
@@ -96,4 +110,4 @@ export BOOST_ROOT=$PWD/boost_1_78_0
 ```cpp
 set(CMAKE_CXX_COMPILER g++-11)
 ```
-to the CMakeLists.txt in the metall repo.
+to the CMakeLists.txt in the metall repo. -->
