@@ -1,12 +1,12 @@
 class WelcomeController < ApplicationController
-
-    before_action :authenticate_user! , except: [:process_data]
+    before_action :authenticate_user!, except: [:process_data], unless: -> { Rails.env.test? }
 
     # app/controllers/your_controller.rb
     # g++ public/test.cpp -o public/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
     def fetch_data
         # system("g++ public/test.cpp -o public/test_program2 -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11")
-        json_data = `public/consub`
+        json_data = system("public/consub > public/foo.out")
+        # json_data = system("cp db/data.json public/data.json")
         return json_data
     end
 
@@ -19,7 +19,13 @@ class WelcomeController < ApplicationController
         params_data = {"include"=> include_data, "exclude"=> exclude_data, "budget"=> budget}
 
         params_file_path_out = Rails.root.join('public', 'params.json')
-        File.write(params_file_path_out, JSON.pretty_generate(params_data))
+
+        begin
+            File.write(params_file_path_out, JSON.pretty_generate(params_data))
+        rescue Errno::EACCES, Errno::EIO, Errno::EPIPE => e
+            render json: { error: "Error writing params.json: #{e.message}" }, status: :internal_server_error
+            return
+        end
 
         puts fetch_data
         

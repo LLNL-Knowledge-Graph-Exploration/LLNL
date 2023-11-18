@@ -65,3 +65,30 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+# require 'selenium-webdriver'
+
+Before do
+  Capybara.default_driver = :rack_test # Set your default driver here
+
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end
+end
+
+Before('@headless_chrome') do
+  Capybara.default_driver = :selenium
+
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless')
+  options.add_argument('--disable-gpu')
+  options.add_argument('--enable-logging')
+
+  Capybara.register_driver :selenium do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  end
+
+  source_path = Rails.root.join('db', 'data.json')
+  destination_path = Rails.root.join('public', 'data.json')
+  FileUtils.cp(source_path, destination_path)
+end

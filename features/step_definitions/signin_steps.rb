@@ -7,7 +7,7 @@ Then('I should see {string}') do |string|
 end
 
 Then('I fill in {string} with {string}') do |key, value|
-  fill_in key, with: value
+  find("##{key}").set(value)
 end
 
 Then('I press {string}') do |string|
