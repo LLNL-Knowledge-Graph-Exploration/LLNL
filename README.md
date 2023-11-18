@@ -7,6 +7,14 @@ Link: [https://calm-taiga-61776-a8b4b3801c6c.herokuapp.com/](https://calm-taiga-
 
 Ruby Version: `3.2.2`
 
+How to install:
+
+rbenv: [Link](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-20-04)
+
+or rvm: [Link](https://rvm.io/rvm/install)
+
+Heroku CLI: [Link](https://devcenter.heroku.com/articles/heroku-cli)
+
 # Project Setup
 
 1. Clone this repository.
