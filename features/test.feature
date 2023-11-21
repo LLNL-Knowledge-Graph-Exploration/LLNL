@@ -15,7 +15,7 @@ Feature: Inclusion of graph nodes
         | node2 |
         | node3 |
   		And I am on the sign-in page
-  		Then I should see "Log in"
+  		Then I should see "Login"
   		And I fill in "user_email" with "user1@email.com"
   		And I fill in "user_password" with "1234567890"
   		And I press "Log in"
@@ -32,7 +32,7 @@ Feature: Inclusion of graph nodes
         | node2 |
         | node3 |
   		And I am on the sign-in page
-  		Then I should see "Log in"
+  		Then I should see "Login"
   		And I fill in "user_email" with "user1@email.com"
   		And I fill in "user_password" with "1234567890"
   		And I press "Log in"
@@ -48,7 +48,7 @@ Feature: Inclusion of graph nodes
         | node2 |
         | node3 |
   		And I am on the sign-in page
-  		Then I should see "Log in"
+  		Then I should see "Login"
   		And I fill in "user_email" with "user1@email.com"
   		And I fill in "user_password" with "1234567890"
   		And I press "Log in"
@@ -64,7 +64,7 @@ Feature: Inclusion of graph nodes
         | node2 |
         | node3 |
   		And I am on the sign-in page
-  		Then I should see "Log in"
+  		Then I should see "Login"
   		And I fill in "user_email" with "user1@email.com"
   		And I fill in "user_password" with "1234567890"
   		And I press "Log in"
