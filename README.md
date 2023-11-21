@@ -33,7 +33,7 @@ Heroku CLI: [Link](https://devcenter.heroku.com/articles/heroku-cli)
 
 1. Clone this repository.
    
-   `git clone git@github.com:LLNL-Knowledge-Graph-Exploration/LLNL.git`
+   `git clone https://github.com/LLNL-Knowledge-Graph-Exploration/LLNL.git`
 
 3. Navigate to project directory
 
