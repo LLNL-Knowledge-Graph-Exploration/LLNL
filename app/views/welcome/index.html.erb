@@ -61,6 +61,29 @@
                             cell2.innerHTML = data[key];
                         }
                     }
+                });
+                cy.on('click', 'edge', function(evt){
+                    document.getElementById("nodeId").textContent = this.data("id");
+                    document.getElementById("metaDataInclude").setAttribute('hidden', true);
+                    document.getElementById("metaDataExclude").setAttribute('hidden', true);
+                    console.log( 'clicked ' + this.id() );
+                    var table = document.getElementById("metaDataTable");
+                    while (table.firstChild) {
+                        table.removeChild(table.firstChild);
+                    }
+                    var data = this.data();
+                    // Loop through the data
+                    for (const key in data) {
+                        if (data.hasOwnProperty(key) && key!="id") {
+                            const newRow = table.insertRow(table.rows.length);
+
+                            const cell1 = newRow.insertCell(0);
+                            const cell2 = newRow.insertCell(1);
+
+                            cell1.innerHTML = key;
+                            cell2.innerHTML = data[key];
+                        }
+                    }
                 })
             });
         }

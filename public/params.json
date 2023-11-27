@@ -1,9 +1,10 @@
 {
   "include": [
-    "a"
+    "r/AskReddit",
+    "r/funny"
   ],
   "exclude": [
-    "b"
+    ""
   ],
-  "budget": "10"
+  "budget": "50"
 }

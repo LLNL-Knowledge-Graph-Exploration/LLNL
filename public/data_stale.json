@@ -1,0 +1,1 @@
+{"nodes":[{"data":{"id":"r/AskReddit"}},{"data":{"id":"r/funny"}},{"data":{"id":"u/uninc4life2010"}}],"edges":[{"data":{"source":"r/AskReddit","target":"u/uninc4life2010"}},{"data":{"source":"r/funny","target":"u/uninc4life2010"}}]}

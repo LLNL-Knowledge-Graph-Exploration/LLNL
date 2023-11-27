@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
     # g++ public/test.cpp -o public/test_program -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11
     def fetch_data
         # system("g++ public/test.cpp -o public/test_program2 -I/usr/local/Cellar/nlohmann-json/3.11.2/include/nlohmann -std=c++11")
-        json_data = system("public/consub > public/foo.out")
+        json_data = system("public/consub")
         # json_data = system("cp db/data.json public/data.json")
         return json_data
     end
@@ -27,6 +27,7 @@ class WelcomeController < ApplicationController
             return
         end
 
+        #Calls c++ program
         puts fetch_data
         
         # Throw error if user puts the same node in include and exclude
@@ -49,38 +50,41 @@ class WelcomeController < ApplicationController
             file = File.write(json_file_path_in, params[:uploadedFile].read)
         end
 
-        begin
-            json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
-        rescue JSON::ParserError => e
-            render json: { error: "Error reading data.json: #{e.message}" }, status: :internal_server_error
-            return
-        end
-
-        json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
-
-        # Calls to the inclusion, exclusion models
-        inclusion = Inclusion.new
-        exclusion = Exclusion.new
-        assembler = Assembler.new
-        budgeter = Budget.new
-
-        included_edges = inclusion.includeNodes(include_data, json_data)
-        included_edges = exclusion.excludeNodes(included_edges, exclude_data)
-        final_data = assembler.assemble(include_data, included_edges, json_data)
-
-        unless budget.nil? || budget.empty?
-            final_data = budgeter.modify_nodes(final_data, budget.to_i, include_data)
-            if final_data.is_a?(Hash) && final_data.key?('error')
-                render json: { error: "The number of included nodes exceeds the budget" }, status: :internal_server_error
+        # This helps mock the graph traversal for testing purposes
+        if Rails.env.test?
+            begin
+                json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
+            rescue JSON::ParserError => e
+                render json: { error: "Error reading data.json: #{e.message}" }, status: :internal_server_error
                 return
             end
-        end
-        # Save the updated JSON data back to data.json
-        begin
-            File.write(json_file_path_out, JSON.pretty_generate(final_data))
-        rescue Errno::EACCES, Errno::EIO, Errno::EPIPE => e
-            render json: { error: "Error writing data.json: #{e.message}" }, status: :internal_server_error
-            return
+    
+            json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
+    
+            # Calls to the inclusion, exclusion models
+            inclusion = Inclusion.new
+            exclusion = Exclusion.new
+            assembler = Assembler.new
+            budgeter = Budget.new
+    
+            included_edges = inclusion.includeNodes(include_data, json_data)
+            included_edges = exclusion.excludeNodes(included_edges, exclude_data)
+            final_data = assembler.assemble(include_data, included_edges, json_data)
+    
+            unless budget.nil? || budget.empty?
+                final_data = budgeter.modify_nodes(final_data, budget.to_i, include_data)
+                if final_data.is_a?(Hash) && final_data.key?('error')
+                    render json: { error: "The number of included nodes exceeds the budget" }, status: :internal_server_error
+                    return
+                end
+            end
+            # Save the updated JSON data back to data.json
+            begin
+                File.write(json_file_path_out, JSON.pretty_generate(final_data))
+            rescue Errno::EACCES, Errno::EIO, Errno::EPIPE => e
+                render json: { error: "Error writing data.json: #{e.message}" }, status: :internal_server_error
+                return
+            end
         end
         render json: { message: 'Data processed and updated successfully' }
       end

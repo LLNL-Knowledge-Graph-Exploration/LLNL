@@ -1,0 +1,152 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+ 
+ body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #f4f4f8;
+    margin: 0px;
+}
+.heading {
+    text-align: center;
+}
+header {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+}
+header form {
+    background-color:#333;
+    float: right;
+    padding: 0px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.left-column {
+    flex: 1;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+}
+.center-column {
+    flex: 3;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+}
+.right-column {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logout {
+    background-color:#333;
+    text-align: right;
+}
+
+form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.uploadForm {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    margin-top: 0px;
+}
+
+.dynamic-field {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.dynamic-section {
+    margin-bottom: 20px;
+}
+
+button {
+    margin-right: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #3498db;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #2ecc71;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #27ae60;
+}
+#cy {
+    height: calc(100vh - 215px)
+}
+table {
+    width: 100%;
+    text-align: center;
+}
+td {
+    width: 50%;
+}
