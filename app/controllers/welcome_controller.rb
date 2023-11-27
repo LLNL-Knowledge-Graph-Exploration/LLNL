@@ -27,6 +27,7 @@ class WelcomeController < ApplicationController
             return
         end
 
+        #Calls c++ program
         puts fetch_data
         
         # Throw error if user puts the same node in include and exclude
@@ -49,6 +50,7 @@ class WelcomeController < ApplicationController
             file = File.write(json_file_path_in, params[:uploadedFile].read)
         end
 
+        # This helps mock the graph traversal for testing purposes
         if Rails.env.test?
             begin
                 json_data = File.exist?(json_file_path_in) ? JSON.parse(File.read(json_file_path_in)) : {}
