@@ -21,6 +21,22 @@ RSpec.describe WelcomeController, type: :controller do
       expect(json_response).to include('message' => 'Data processed and updated successfully')
     end
 
+    it 'processes data throws error if budget is less than inclusion' do
+      allow(controller).to receive(:authenticate_user!)
+
+      # sample parameters for the request
+      include_data = ['node1', 'node2']
+      exclude_data = []
+      budget = 1
+
+
+      post :process_data, params: { include: include_data, exclude: exclude_data, budget: budget }
+
+      json_response = JSON.parse(response.body)
+
+      expect(json_response).to include('error' => "The number of included nodes exceeds the budget")
+    end
+
     it 'handles common nodes in include and exclude' do
       allow(controller).to receive(:authenticate_user!)
 
