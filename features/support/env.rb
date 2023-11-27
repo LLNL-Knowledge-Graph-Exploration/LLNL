@@ -88,7 +88,7 @@ Before('@headless_chrome') do
     Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   end
 
-  source_path = Rails.root.join('db', 'data.json')
+  source_path = Rails.root.join('db', 'data_mock.json')
   destination_path = Rails.root.join('public', 'data.json')
   FileUtils.cp(source_path, destination_path)
 end
