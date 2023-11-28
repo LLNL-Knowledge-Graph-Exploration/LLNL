@@ -41,6 +41,8 @@ Heroku CLI: [Link](https://devcenter.heroku.com/articles/heroku-cli)
 
 4. Install Gem Packages
 
+   NOTE: If needed, configure bundler to skip production gems: `bundle config set --local without 'production'`
+   
     `bundle install`
 
 5. Run locally
