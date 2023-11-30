@@ -1,7 +1,7 @@
-{ "id": "ae", "weight": 1, "parent_id":"e", "author": "a", "subreddit": "e" }
-{ "id": "ab", "weight": 3, "parent_id":"b", "author": "a", "subreddit": "f" }
-{ "id": "be", "weight": 4, "parent_id":"e", "author": "b", "subreddit": "e" }
-{ "id": "bc", "weight": 5, "parent_id":"c", "author": "b", "subreddit": "g" }
-{ "id": "ce", "weight": 6, "parent_id":"e", "author": "c", "subreddit": "e" }
-{ "id": "cd", "weight": 2, "parent_id":"d", "author": "c", "subreddit": "g" }
-{ "id": "de", "weight": 7, "parent_id":"e", "author": "d", "subreddit": "e" }
+{ "id": "ae", "score": 1, "parent_id":"e", "author": "a", "subreddit": "e","body":"Sorry","created_utc":1548979200 }
+{ "id": "ab", "score": 3, "parent_id":"b", "author": "a", "subreddit": "f","body":"Sorry","created_utc":1548979200 }
+{ "id": "be", "score": 4, "parent_id":"e", "author": "b", "subreddit": "e","body":"Sorry","created_utc":1548979200 }
+{ "id": "bc", "score": 5, "parent_id":"c", "author": "b", "subreddit": "g","body":"Sorry","created_utc":1548979200 }
+{ "id": "ce", "score": 6, "parent_id":"e", "author": "c", "subreddit": "e","body":"Sorry","created_utc":1548979200 }
+{ "id": "cd", "score": 2, "parent_id":"d", "author": "c", "subreddit": "g","body":"Sorry","created_utc":1548979200 }
+{ "id": "de", "score": 7, "parent_id":"e", "author": "d", "subreddit": "e","body":"Sorry","created_utc":1548979200 }
