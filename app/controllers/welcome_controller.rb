@@ -37,6 +37,10 @@ class WelcomeController < ApplicationController
         if params[:uploadedFile].present? && params[:uploadedFile].respond_to?(:read)
             puts "Writing uploaded json file"
             file = File.write(json_file_path_in, params[:uploadedFile].read)
+            puts "After writing to file"
+            file_content = File.read(json_file_path_in)
+            puts "File content:"
+            puts file_content
         else
             File.write(json_file_path_in, File.read(Rails.root.join('db', 'data_reddit.json')))
         end
