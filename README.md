@@ -47,6 +47,8 @@ Heroku CLI: [Link](https://devcenter.heroku.com/articles/heroku-cli)
 
 5. Run locally
 
+    NOTE: The C++ Algorithm Executable does not work on MacOS and Windows. Ubuntu is required.
+
     - Via Rails
 
         - `rails server`
