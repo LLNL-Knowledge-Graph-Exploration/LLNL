@@ -1,0 +1,7 @@
+{ "id": "ae", "weight": 1, "author": "a", "subreddit": "e" }
+{ "id": "ab", "weight": 3, "author": "a", "subreddit": "b" }
+{ "id": "be", "weight": 4, "author": "b", "subreddit": "e" }
+{ "id": "bc", "weight": 5, "author": "b", "subreddit": "c" }
+{ "id": "ce", "weight": 6, "author": "c", "subreddit": "e" }
+{ "id": "cd", "weight": 2, "author": "c", "subreddit": "d" }
+{ "id": "de", "weight": 7, "author": "d", "subreddit": "e" }

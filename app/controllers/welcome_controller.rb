@@ -27,6 +27,21 @@ class WelcomeController < ApplicationController
             return
         end
 
+        # Fetch and parse the current data.json
+        json_file_path_in = if Rails.env.test?
+                                Rails.root.join('db', 'test_data.json')
+                            else
+                                Rails.root.join('db', 'data.json')
+                            end
+        json_file_path_out = Rails.root.join('public', 'data.json')
+        if params[:uploadedFile].present? && params[:uploadedFile].respond_to?(:read)
+            puts "Writing uploaded json file"
+            file = File.write(json_file_path_in, params[:uploadedFile].read)
+        else
+            File.write(json_file_path_in, File.read(Rails.root.join('db', 'data_reddit.json'))
+        end
+
+
         #Calls c++ program
         puts fetch_data
         
@@ -39,17 +54,7 @@ class WelcomeController < ApplicationController
 
         puts "Hello I am Processing Data"
 
-        # Fetch and parse the current data.json
-        json_file_path_in = if Rails.env.test?
-                                Rails.root.join('db', 'test_data.json')
-                            else
-                                Rails.root.join('db', 'data.json')
-                            end
-        json_file_path_out = Rails.root.join('public', 'data.json')
-        if params[:uploadedFile].present? && params[:uploadedFile].respond_to?(:read)
-            file = File.write(json_file_path_in, params[:uploadedFile].read)
-        end
-
+        
         # This helps mock the graph traversal for testing purposes
         if Rails.env.test?
             begin
