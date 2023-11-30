@@ -38,7 +38,7 @@ class WelcomeController < ApplicationController
             puts "Writing uploaded json file"
             file = File.write(json_file_path_in, params[:uploadedFile].read)
         else
-            File.write(json_file_path_in, File.read(Rails.root.join('db', 'data_reddit.json'))
+            File.write(json_file_path_in, File.read(Rails.root.join('db', 'data_reddit.json')))
         end
 
 
@@ -92,6 +92,6 @@ class WelcomeController < ApplicationController
             end
         end
         render json: { message: 'Data processed and updated successfully' }
-      end
+    end
 
 end
