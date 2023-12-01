@@ -65,6 +65,10 @@ Heroku CLI: [Link](https://devcenter.heroku.com/articles/heroku-cli)
 
 4. Testing
 
+    NOTE: If fails are occuring in Selenium for WSL2, Chrome and ChromeDriver may need to be installed.
+
+    ChromeDriver for WSL2: [Link](https://www.gregbrisebois.com/posts/chromedriver-in-wsl2/)
+
     - Run Cucumber Tests
 
         - `RAILS_ENV=test bundle exec cucumber <test path (optional)>`

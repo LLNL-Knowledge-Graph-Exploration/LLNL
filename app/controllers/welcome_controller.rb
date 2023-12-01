@@ -28,7 +28,7 @@ class WelcomeController < ApplicationController
         end
 
         # Fetch and parse the current data.json
-        if Rails.env.production?
+        if Rails.env.production? or Rails.env.development?
             json_file_path_in = Rails.root.join('db', 'data.json')
             json_file_path_out = Rails.root.join('public', 'data.json')
             if params[:uploadedFile].present? && params[:uploadedFile].respond_to?(:read)
