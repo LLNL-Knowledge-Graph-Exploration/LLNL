@@ -28,27 +28,27 @@ class WelcomeController < ApplicationController
         end
 
         # Fetch and parse the current data.json
-        json_file_path_in = if Rails.env.test?
-                                Rails.root.join('db', 'test_data.json')
-                            else
-                                Rails.root.join('db', 'data.json')
-                            end
-        json_file_path_out = Rails.root.join('public', 'data.json')
-        if params[:uploadedFile].present? && params[:uploadedFile].respond_to?(:read)
-            puts "Writing uploaded json file"
-            file = File.write(json_file_path_in, params[:uploadedFile].read)
-            puts "After writing to file"
-            file_content = File.read(json_file_path_in)
-            puts "File content:"
-            puts file_content
-        else
-            File.write(json_file_path_in, File.read(Rails.root.join('db', 'data_reddit.json')))
+        if Rails.env.production?
+            json_file_path_in = Rails.root.join('db', 'data.json')
+            json_file_path_out = Rails.root.join('public', 'data.json')
+            if params[:uploadedFile].present? && params[:uploadedFile].respond_to?(:read)
+                puts "Writing uploaded json file"
+                file = File.write(json_file_path_in, params[:uploadedFile].read)
+                puts "After writing to file"
+                file_content = File.read(json_file_path_in)
+                puts "File content:"
+                puts file_content
+            else
+                File.write(json_file_path_in, File.read(Rails.root.join('db', 'data_reddit.json')))
+            end
         end
 
 
+
         #Calls c++ program
-        puts fetch_data
-        
+        if not Rails.env.test?
+            puts fetch_data
+        end
         # Throw error if user puts the same node in include and exclude
         common_nodes = include_data & exclude_data
         if common_nodes.any?
@@ -57,6 +57,16 @@ class WelcomeController < ApplicationController
         end
 
         puts "Hello I am Processing Data"
+
+        # Fetch and parse the current data.json\
+        if Rails.env.test?
+            json_file_path_in = Rails.root.join('db', 'test_data.json')
+            json_file_path_out = Rails.root.join('public', 'data.json')
+            if params[:uploadedFile].present? && params[:uploadedFile].respond_to?(:read)
+                file = File.write(json_file_path_in, params[:uploadedFile].read)
+            end
+        end
+        
 
         
         # This helps mock the graph traversal for testing purposes
