@@ -32,23 +32,15 @@ class WelcomeController < ApplicationController
             json_file_path_in = Rails.root.join('db', 'data.json')
             json_file_path_out = Rails.root.join('public', 'data.json')
             if params[:uploadedFile].present? && params[:uploadedFile].respond_to?(:read)
-                puts "Writing uploaded json file"
                 file = File.write(json_file_path_in, params[:uploadedFile].read)
-                puts "After writing to file"
                 file_content = File.read(json_file_path_in)
-                puts "File content:"
-                puts file_content
             else
                 File.write(json_file_path_in, File.read(Rails.root.join('db', 'data_reddit.json')))
             end
         end
 
-
-
         #Calls c++ program
-        if not Rails.env.test?
-            puts fetch_data
-        end
+        puts fetch_data
         # Throw error if user puts the same node in include and exclude
         common_nodes = include_data & exclude_data
         if common_nodes.any?
